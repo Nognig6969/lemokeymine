@@ -32,6 +32,11 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 
 #if defined(RGB_MATRIX_ENABLE) && defined(CAPS_LOCK_LED_INDEX)
 
+#ifndef CAPS_LOCK_LED_COLOR
+    #define CAPS_LOCK_LED_COLOR RGB_WHITE //white
+#endif
+
+
 #define CAPS_LOCK_BRIGHTNESS 0xFF
 #ifdef RGB_MATRIX_MAXIMUM_BRIGHTNESS
     #undef CAPS_LOCK_BRIGHTNESS
@@ -41,7 +46,7 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
 __attribute__((weak))
 void rgb_matrix_indicators_user(void) {
     if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, CAPS_LOCK_BRIGHTNESS, CAPS_LOCK_BRIGHTNESS, CAPS_LOCK_BRIGHTNESS);  // white
+        rgb_matrix_set_color(CAPS_LOCK_LED_INDEX, CAPS_LOCK_LED_COLOR);
     }
 }
 

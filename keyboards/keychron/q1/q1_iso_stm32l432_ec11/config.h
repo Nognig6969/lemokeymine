@@ -53,3 +53,7 @@
 
 /* Specifies the number of pulses the encoder registers between each detent */
 #define ENCODER_RESOLUTION 4
+
+/* enables led capslock indicator */
+#define CAPS_LOCK_LED_INDEX 44
+#define CAPS_LOCK_LED_COLOR RGB_RED
