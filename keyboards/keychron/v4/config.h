@@ -39,6 +39,9 @@
 #define DRIVER_COUNT 1
 #define DRIVER_ADDR_1 0b1110111
 
+#define CONSTANT_CURRENT_STEP \
+    { 0xA8, 0xA8, 0x88, 0xA8, 0xA8, 0x88, 0xA8, 0xA8, 0x88, 0xA8, 0xA8, 0x88 }
+
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {4,4} }
 
@@ -50,9 +53,6 @@
 
 /* turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* Set USB polling interval to 1 milliseconds */
-#define USB_POLLING_INTERVAL_MS 1
 
 /* We have 2KB EEPROM size on STM32L432 */
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
@@ -114,7 +114,3 @@
 
 /* Enable receive custom command from host */
 #define RAW_HID_CMD 0xAB
-
-/* Q4 uses single led controller chip, so define the LOW_CURRENT_MODE
- * (effective in ckled2001.c) to set the current page individually. */
-#define LOW_CURRENT_MODE

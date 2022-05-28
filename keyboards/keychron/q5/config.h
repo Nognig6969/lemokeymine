@@ -40,6 +40,9 @@
 #define DRIVER_ADDR_1 0b1110111
 #define DRIVER_ADDR_2 0b1110100
 
+#define CONSTANT_CURRENT_STEP \
+    { 0xB6, 0xB6, 0x56, 0xB6, 0xB6, 0x56, 0xB6, 0xB6, 0x56, 0xB6, 0xB6, 0x56 }
+
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {5, 4} }
 
@@ -51,9 +54,6 @@
 
 /* turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* Set USB polling interval to 1 milliseconds */
-#define USB_POLLING_INTERVAL_MS 1
 
 /* We have 2KB emulated EEPROM size on STM32L432*/
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047

@@ -3,7 +3,7 @@
     "url": "https://github.com/Keychron",
     "maintainer": "lalalademaxiya1",
     "layouts": {
-        "LAYOUT_ansi_70": {
+        "LAYOUT_ansi_69": {
             "layout": [
                 {"label":"Esc", "x":0.75, "y":0.25},
                 {"label":"1!", "x":1.75, "y":0.25},
@@ -43,7 +43,6 @@
                 {"label":"D", "x":4.5, "y":2.25},
                 {"label":"F", "x":5.5, "y":2.25},
                 {"label":"G", "x":6.5, "y":2.25},
-                {"label":"G", "x":8.25, "y":2.25},
                 {"label":"H", "x":9.25, "y":2.25},
                 {"label":"J", "x":10.25, "y":2.25},
                 {"label":"K", "x":11.25, "y":2.25},
@@ -123,7 +122,6 @@
                 {"label":"D", "x":4.5, "y":2.75},
                 {"label":"F", "x":5.5, "y":2.75},
                 {"label":"G", "x":6.5, "y":2.75},
-                {"label":"G", "x":8.25, "y":2.75},
                 {"label":"H", "x":9.25, "y":2.75},
                 {"label":"J", "x":10.25, "y":2.75},
                 {"label":"K", "x":11.25, "y":2.75},
