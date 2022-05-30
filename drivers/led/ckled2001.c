@@ -26,13 +26,8 @@
 #    define CKLED2001_PERSISTENCE 0
 #endif
 
-#ifndef SCAN_PHASE_CHANNEL
-#    define SCAN_PHASE_CHANNEL MSKPHASE_12CHANNEL
-#endif
-
-#ifndef CONSTANT_CURRENT_STEP
-#    define CONSTANT_CURRENT_STEP \
-        { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF }
+#ifndef PHASE_CHANNEL
+#    define PHASE_CHANNEL MSKPHASE_12CHANNEL
 #endif
 
 // Transfer buffer for TWITransmitData()
@@ -100,7 +95,7 @@ bool CKLED2001_write_pwm_buffer(uint8_t addr, uint8_t *pwm_buffer) {
     return true;
 }
 
-__attribute__((weak)) void CKLED2001_init(uint8_t addr) {
+void CKLED2001_init(uint8_t addr) {
     // Select to function page
     CKLED2001_write_register(addr, CONFIGURE_CMD_PAGE, FUNCTION_PAGE);
     // Setting LED driver to shutdown mode
@@ -108,7 +103,7 @@ __attribute__((weak)) void CKLED2001_init(uint8_t addr) {
     // Setting internal channel pulldown/pullup
     CKLED2001_write_register(addr, PDU_REG, MSKSET_CA_CB_CHANNEL);
     // Select number of scan phase
-    CKLED2001_write_register(addr, SCAN_PHASE_REG, SCAN_PHASE_CHANNEL);
+    CKLED2001_write_register(addr, SCAN_PHASE_REG, PHASE_CHANNEL);
     // Setting PWM Delay Phase
     CKLED2001_write_register(addr, SLEW_RATE_CONTROL_MODE1_REG, MSKPWM_DELAY_PHASE_ENABLE);
     // Setting Driving/Sinking Channel Slew Rate
@@ -128,10 +123,18 @@ __attribute__((weak)) void CKLED2001_init(uint8_t addr) {
     }
 
     // Set CURRENT PAGE (Page 4)
-    uint8_t led_current_tune[LED_CURRENT_TUNE_LENGTH] = CONSTANT_CURRENT_STEP;
     CKLED2001_write_register(addr, CONFIGURE_CMD_PAGE, CURRENT_TUNE_PAGE);
     for (int i = 0; i < LED_CURRENT_TUNE_LENGTH; i++) {
-        CKLED2001_write_register(addr, i, led_current_tune[i]);
+        switch (i) {
+            case 2:
+            case 5:
+            case 8:
+            case 11:
+                CKLED2001_write_register(addr, i, 0xA0);
+                break;
+            default:
+                CKLED2001_write_register(addr, i, 0xFF);
+        }
     }
 
     // Enable LEDs ON/OFF
