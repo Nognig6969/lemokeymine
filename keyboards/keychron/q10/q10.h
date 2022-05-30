@@ -18,24 +18,8 @@
 
 #include "quantum.h"
 
-#if   defined(KEYBOARD_keychron_q1_q1_ansi_atmega32u4)
-#    include "q1_ansi_atmega32u4.h"
-#elif defined(KEYBOARD_keychron_q1_q1_ansi_atmega32u4_ec11)
-#    include "q1_ansi_atmega32u4_ec11.h"
-#elif defined(KEYBOARD_keychron_q1_q1_iso_atmega32u4)
-#    include "q1_iso_atmega32u4.h"
-#elif defined(KEYBOARD_keychron_q1_q1_iso_atmega32u4_ec11)
-#    include "q1_iso_atmega32u4_ec11.h"
-#elif defined(KEYBOARD_keychron_q1_q1_ansi_stm32l432)
-#    include "q1_ansi_stm32l432.h"
-#elif defined(KEYBOARD_keychron_q1_q1_ansi_stm32l432_ec11)
-#    include "q1_ansi_stm32l432_ec11.h"
-#elif defined(KEYBOARD_keychron_q1_q1_iso_stm32l432)
-#    include "q1_iso_stm32l432.h"
-#elif defined(KEYBOARD_keychron_q1_q1_iso_stm32l432_ec11)
-#    include "q1_iso_stm32l432_ec11.h"
-#elif defined(KEYBOARD_keychron_q1_q1_jis_stm32l432)
-#    include "q1_jis_stm32l432.h"
-#elif defined(KEYBOARD_keychron_q1_q1_jis_stm32l432_ec11)
-#    include "q1_jis_stm32l432_ec11.h"
+#if   defined(KEYBOARD_keychron_q10_q10_ansi_stm32l432)
+#    include "q10_ansi_stm32l432.h"
+#elif defined(KEYBOARD_keychron_q10_q10_ansi_stm32l432_ec11)
+#    include "q10_ansi_stm32l432_ec11.h"
 #endif

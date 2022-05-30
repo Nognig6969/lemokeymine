@@ -19,13 +19,29 @@
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x3434
 #define MANUFACTURER    Keychron
-#define PRODUCT         Keychron Q1
+#define PRODUCT         Keychron Q10
+
+/* key matrix size */
+#define MATRIX_ROWS 6
+#define MATRIX_COLS 16
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION ROW2COL
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
+
+/* RGB Matrix Driver Configuration */
+#define DRIVER_COUNT 2
+#define DRIVER_ADDR_1 0b1110111
+#define DRIVER_ADDR_2 0b1110100
+
+/* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
+#define PHASE_CHANNEL MSKPHASE_9CHANNEL
+#define CONSTANT_CURRENT_STEP { 0xC6, 0xC6, 0x66, 0xC6, 0xC6, 0x66, 0xC6, 0xC6, 0x66, 0xC6, 0xC6, 0x66 }
+
+/* DIP switch */
+#define DIP_SWITCH_MATRIX_GRID  { {5,5} }
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
@@ -35,6 +51,9 @@
 
 /* Disable RGB lighting when PC is in suspend */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
+
+/* We have 2KB EEPROM size on STM32L432 */
+#define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
 
 // RGB Matrix Animation modes. Explicitly enabled
 // For full list of effects, see:

@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "q1.h"
+#include "q10.h"
 
 #ifdef DIP_SWITCH_ENABLE
 
