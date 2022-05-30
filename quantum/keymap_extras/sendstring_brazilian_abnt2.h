@@ -14,11 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Sendstring lookup tables for Programmer Dvorak layouts
+// Sendstring lookup tables for Brazilian (ABNT2) layouts
 
 #pragma once
 
-#include "keymap_dvp.h"
+#include "keymap_brazilian_abnt2.h"
 #include "quantum.h"
 
 // clang-format off
@@ -29,18 +29,38 @@ const uint8_t ascii_to_shift_lut[16] PROGMEM = {
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
 
-    KCLUT_ENTRY(0, 0, 1, 0, 0, 1, 0, 0),
+    KCLUT_ENTRY(0, 1, 1, 1, 1, 1, 1, 0),
+    KCLUT_ENTRY(1, 1, 1, 1, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 1, 0, 1, 0, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
-    KCLUT_ENTRY(1, 1, 1, 0, 1, 0, 1, 1),
-    KCLUT_ENTRY(0, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 0, 0, 0, 1, 1),
     KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
-    KCLUT_ENTRY(0, 0, 0, 0, 1, 0, 1, 0)
+    KCLUT_ENTRY(0, 0, 0, 1, 1, 1, 0, 0)
+};
+
+const uint8_t ascii_to_dead_lut[16] PROGMEM = {
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 1, 0),
+    KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 1, 0)
 };
 
 const uint8_t ascii_to_keycode_lut[128] PROGMEM = {
@@ -54,27 +74,27 @@ const uint8_t ascii_to_keycode_lut[128] PROGMEM = {
     XXXXXXX, XXXXXXX, XXXXXXX, KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
     //       !        "        #        $        %        &        '
-    KC_SPC,  DP_EXLM, DP_QUOT, DP_HASH, DP_DLR,  DP_AMPR, DP_AMPR, DP_QUOT,
+    KC_SPC,  BR_1,    BR_QUOT, BR_3,    BR_4,    BR_5,    BR_7,    BR_QUOT,
     // (     )        *        +        ,        -        .        /
-    DP_LPRN, DP_RPRN, DP_ASTR, DP_PLUS, DP_COMM, DP_MINS, DP_DOT,  DP_SLSH,
+    BR_9,    BR_0,    BR_8,    BR_EQL,  BR_COMM, BR_MINS, BR_DOT,  BR_SLSH,
     // 0     1        2        3        4        5        6        7
-    DP_ASTR, DP_LPRN, DP_RPRN, DP_RCBR, DP_PLUS, DP_LCBR, DP_RBRC, DP_LBRC,
+    BR_0,    BR_1,    BR_2,    BR_3,    BR_4,    BR_5,    BR_6,    BR_7,
     // 8     9        :        ;        <        =        >        ?
-    DP_EXLM, DP_EQL,  DP_SCLN, DP_SCLN, DP_COMM, DP_EQL,  DP_DOT,  DP_SLSH,
+    BR_8,    BR_9,    BR_SCLN, BR_SCLN, BR_COMM, BR_EQL,  BR_DOT,  BR_SLSH,
     // @     A        B        C        D        E        F        G
-    DP_AT,   DP_A,    DP_B,    DP_C,    DP_D,    DP_E,    DP_F,    DP_G,
+    BR_2,    BR_A,    BR_B,    BR_C,    BR_D,    BR_E,    BR_F,    BR_G,
     // H     I        J        K        L        M        N        O
-    DP_H,    DP_I,    DP_J,    DP_K,    DP_L,    DP_M,    DP_N,    DP_O,
+    BR_H,    BR_I,    BR_J,    BR_K,    BR_L,    BR_M,    BR_N,    BR_O,
     // P     Q        R        S        T        U        V        W
-    DP_P,    DP_Q,    DP_R,    DP_S,    DP_T,    DP_U,    DP_V,    DP_W,
+    BR_P,    BR_Q,    BR_R,    BR_S,    BR_T,    BR_U,    BR_V,    BR_W,
     // X     Y        Z        [        \        ]        ^        _
-    DP_X,    DP_Y,    DP_Z,    DP_LBRC, DP_BSLS, DP_RBRC, DP_AT,   DP_MINS,
+    BR_X,    BR_Y,    BR_Z,    BR_LBRC, BR_BSLS, BR_RBRC, BR_TILD, BR_MINS,
     // `     a        b        c        d        e        f        g
-    DP_HASH, DP_A,    DP_B,    DP_C,    DP_D,    DP_E,    DP_F,    DP_G,
+    BR_ACUT, BR_A,    BR_B,    BR_C,    BR_D,    BR_E,    BR_F,    BR_G,
     // h     i        j        k        l        m        n        o
-    DP_H,    DP_I,    DP_J,    DP_K,    DP_L,    DP_M,    DP_N,    DP_O,
+    BR_H,    BR_I,    BR_J,    BR_K,    BR_L,    BR_M,    BR_N,    BR_O,
     // p     q        r        s        t        u        v        w
-    DP_P,    DP_Q,    DP_R,    DP_S,    DP_T,    DP_U,    DP_V,    DP_W,
+    BR_P,    BR_Q,    BR_R,    BR_S,    BR_T,    BR_U,    BR_V,    BR_W,
     // x     y        z        {        |        }        ~        DEL
-    DP_X,    DP_Y,    DP_Z,    DP_LCBR, DP_BSLS, DP_RCBR, DP_DLR,  KC_DEL
+    BR_X,    BR_Y,    BR_Z,    BR_LBRC, BR_BSLS, BR_RBRC, BR_TILD, KC_DEL
 };

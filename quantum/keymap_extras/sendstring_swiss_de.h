@@ -14,11 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Sendstring lookup tables for Brazilian (ABNT2) layouts
+// Sendstring lookup tables for Swiss German layouts
 
 #pragma once
 
-#include "keymap_br_abnt2.h"
+#include "keymap_swiss_de.h"
 #include "quantum.h"
 
 // clang-format off
@@ -29,18 +29,58 @@ const uint8_t ascii_to_shift_lut[16] PROGMEM = {
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
 
-    KCLUT_ENTRY(0, 1, 1, 1, 1, 1, 1, 0),
-    KCLUT_ENTRY(1, 1, 1, 1, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 1, 1, 0, 0, 1, 1, 0),
+    KCLUT_ENTRY(1, 1, 1, 1, 0, 0, 0, 1),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
-    KCLUT_ENTRY(0, 0, 1, 0, 1, 0, 1, 1),
+    KCLUT_ENTRY(0, 0, 1, 1, 0, 1, 1, 1),
+    KCLUT_ENTRY(0, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
     KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
-    KCLUT_ENTRY(1, 1, 1, 1, 1, 1, 1, 1),
-    KCLUT_ENTRY(1, 1, 1, 0, 0, 0, 1, 1),
+    KCLUT_ENTRY(1, 1, 1, 0, 0, 0, 0, 1),
     KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
     KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
-    KCLUT_ENTRY(0, 0, 0, 1, 1, 1, 0, 0)
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0)
+};
+
+const uint8_t ascii_to_altgr_lut[16] PROGMEM = {
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 1, 1, 1, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 1, 1, 1, 1, 0)
+};
+
+const uint8_t ascii_to_dead_lut[16] PROGMEM = {
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 1, 0),
+    KCLUT_ENTRY(1, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 0, 0),
+    KCLUT_ENTRY(0, 0, 0, 0, 0, 0, 1, 0)
 };
 
 const uint8_t ascii_to_keycode_lut[128] PROGMEM = {
@@ -54,27 +94,27 @@ const uint8_t ascii_to_keycode_lut[128] PROGMEM = {
     XXXXXXX, XXXXXXX, XXXXXXX, KC_ESC,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
     //       !        "        #        $        %        &        '
-    KC_SPC,  BR_1,    BR_QUOT, BR_3,    BR_4,    BR_5,    BR_7,    BR_QUOT,
+    KC_SPC,  CH_DIAE, CH_2,    CH_3,    CH_DLR,  CH_5,    CH_6,    CH_QUOT,
     // (     )        *        +        ,        -        .        /
-    BR_9,    BR_0,    BR_8,    BR_EQL,  BR_COMM, BR_MINS, BR_DOT,  BR_SLSH,
+    CH_8,    CH_9,    CH_3,    CH_1,    CH_COMM, CH_MINS, CH_DOT,  CH_7,
     // 0     1        2        3        4        5        6        7
-    BR_0,    BR_1,    BR_2,    BR_3,    BR_4,    BR_5,    BR_6,    BR_7,
+    CH_0,    CH_1,    CH_2,    CH_3,    CH_4,    CH_5,    CH_6,    CH_7,
     // 8     9        :        ;        <        =        >        ?
-    BR_8,    BR_9,    BR_SCLN, BR_SCLN, BR_COMM, BR_EQL,  BR_DOT,  BR_SLSH,
+    CH_8,    CH_9,    CH_DOT,  CH_COMM, CH_LABK, CH_0,    CH_LABK, CH_QUOT,
     // @     A        B        C        D        E        F        G
-    BR_2,    BR_A,    BR_B,    BR_C,    BR_D,    BR_E,    BR_F,    BR_G,
+    CH_2,    CH_A,    CH_B,    CH_C,    CH_D,    CH_E,    CH_F,    CH_G,
     // H     I        J        K        L        M        N        O
-    BR_H,    BR_I,    BR_J,    BR_K,    BR_L,    BR_M,    BR_N,    BR_O,
+    CH_H,    CH_I,    CH_J,    CH_K,    CH_L,    CH_M,    CH_N,    CH_O,
     // P     Q        R        S        T        U        V        W
-    BR_P,    BR_Q,    BR_R,    BR_S,    BR_T,    BR_U,    BR_V,    BR_W,
+    CH_P,    CH_Q,    CH_R,    CH_S,    CH_T,    CH_U,    CH_V,    CH_W,
     // X     Y        Z        [        \        ]        ^        _
-    BR_X,    BR_Y,    BR_Z,    BR_LBRC, BR_BSLS, BR_RBRC, BR_TILD, BR_MINS,
+    CH_X,    CH_Y,    CH_Z,    CH_UDIA, CH_LABK, CH_DIAE, CH_CIRC, CH_MINS,
     // `     a        b        c        d        e        f        g
-    BR_ACUT, BR_A,    BR_B,    BR_C,    BR_D,    BR_E,    BR_F,    BR_G,
+    CH_CIRC, CH_A,    CH_B,    CH_C,    CH_D,    CH_E,    CH_F,    CH_G,
     // h     i        j        k        l        m        n        o
-    BR_H,    BR_I,    BR_J,    BR_K,    BR_L,    BR_M,    BR_N,    BR_O,
+    CH_H,    CH_I,    CH_J,    CH_K,    CH_L,    CH_M,    CH_N,    CH_O,
     // p     q        r        s        t        u        v        w
-    BR_P,    BR_Q,    BR_R,    BR_S,    BR_T,    BR_U,    BR_V,    BR_W,
+    CH_P,    CH_Q,    CH_R,    CH_S,    CH_T,    CH_U,    CH_V,    CH_W,
     // x     y        z        {        |        }        ~        DEL
-    BR_X,    BR_Y,    BR_Z,    BR_LBRC, BR_BSLS, BR_RBRC, BR_TILD, KC_DEL
+    CH_X,    CH_Y,    CH_Z,    CH_ADIA, CH_7,    CH_DLR,  CH_CIRC, KC_DEL
 };

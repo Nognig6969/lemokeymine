@@ -14,11 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Sendstring lookup tables for macOS Italian ANSI layouts
+// Sendstring lookup tables for macOS Italian ISO layouts
 
 #pragma once
 
-#include "keymap_italian_osx_ansi.h"
+#include "keymap_italian_mac_iso.h"
 #include "quantum.h"
 
 // clang-format off
