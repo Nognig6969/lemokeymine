@@ -196,38 +196,38 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 #if RGB_MATRIX_ENABLE
 
-void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    if (factory_reset_count) {
-        for (uint8_t i = led_min; i <= led_max; i++) {
-            rgb_matrix_set_color(i, factory_reset_count % 2 ? 0 : RGB_RED);
-        }
-    } else if (led_test_mode) {
-        switch (led_test_mode) {
-            case LED_TEST_MODE_WHITE:
-                for (uint8_t i = led_min; i <= led_max; i++) {
-                    rgb_matrix_set_color(i, RGB_WHITE);
-                }
-                break;
-            case LED_TEST_MODE_RED:
-                for (uint8_t i = led_min; i <= led_max; i++) {
-                    rgb_matrix_set_color(i, RGB_RED);
-                }
-                break;
-            case LED_TEST_MODE_GREEN:
-                for (uint8_t i = led_min; i <= led_max; i++) {
-                    rgb_matrix_set_color(i, RGB_GREEN);
-                }
-                break;
-            case LED_TEST_MODE_BLUE:
-                for (uint8_t i = led_min; i <= led_max; i++) {
-                    rgb_matrix_set_color(i, RGB_BLUE);
-                }
-                break;
-            default:
-                break;
-        }
-    }
-}
+// void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+//     if (factory_reset_count) {
+//         for (uint8_t i = led_min; i <= led_max; i++) {
+//             rgb_matrix_set_color(i, factory_reset_count % 2 ? 0 : RGB_RED);
+//         }
+//     } else if (led_test_mode) {
+//         switch (led_test_mode) {
+//             case LED_TEST_MODE_WHITE:
+//                 for (uint8_t i = led_min; i <= led_max; i++) {
+//                     rgb_matrix_set_color(i, RGB_WHITE);
+//                 }
+//                 break;
+//             case LED_TEST_MODE_RED:
+//                 for (uint8_t i = led_min; i <= led_max; i++) {
+//                     rgb_matrix_set_color(i, RGB_RED);
+//                 }
+//                 break;
+//             case LED_TEST_MODE_GREEN:
+//                 for (uint8_t i = led_min; i <= led_max; i++) {
+//                     rgb_matrix_set_color(i, RGB_GREEN);
+//                 }
+//                 break;
+//             case LED_TEST_MODE_BLUE:
+//                 for (uint8_t i = led_min; i <= led_max; i++) {
+//                     rgb_matrix_set_color(i, RGB_BLUE);
+//                 }
+//                 break;
+//             default:
+//                 break;
+//         }
+//     }
+// }
 
 #endif
 

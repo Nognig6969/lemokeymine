@@ -102,7 +102,10 @@
 #define ENABLE_RGB_MATRIX_MULTISPLASH
 #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
-// #define RGB_MATRIX_KEYPRESSES
+#define RGB_MATRIX_KEYPRESSES
+
+/* Enable startup mode */
+#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_REACTIVE
 
 /* Enable receive custom command from host */
 #define RAW_HID_CMD 0xAB
