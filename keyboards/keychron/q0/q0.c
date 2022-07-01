@@ -45,4 +45,4 @@
         }
     }
 
-#endif  // CAPS_LOCK_LED_INDEX
+#endif  // NUM_LOCK_LED_INDEX

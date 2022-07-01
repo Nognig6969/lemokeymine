@@ -16,5 +16,4 @@
 
 #pragma once
 
-/* Set dynamic keymap layer counts to 5 */
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
