@@ -44,21 +44,21 @@
 
 /* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
 #define PHASE_CHANNEL MSKPHASE_9CHANNEL
+#define CONSTANT_CURRENT_STEP \
+    { 0xCC, 0xCC, 0x5c, 0xCC, 0xCC, 0x5c, 0xCC, 0xCC, 0x5c, 0xCC, 0xCC, 0x5c}
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
 
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {4,4} }
+#define SCAN_COUNT_MAX 100
 
 /* NKRO */
 #define FORCE_NKRO
 
 /* turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* Set USB polling rate as 1 milliseconds */
-#define USB_POLLING_INTERVAL_MS 1
 
 /* We have 2KB EEPROM size on STM32L432 */
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
@@ -112,11 +112,6 @@
 #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 // #define RGB_MATRIX_KEYPRESSES
-
-/* Allow VIA to edit lighting */
-#ifdef VIA_ENABLE
-#    define VIA_QMK_RGBLIGHT_ENABLE
-#endif
 
 /* Enable receive custom command from host */
 #define RAW_HID_CMD 0xAB

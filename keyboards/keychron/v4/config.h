@@ -26,8 +26,10 @@
 #define MATRIX_COLS 14
 
 /* key matrix pins */
-#define MATRIX_ROW_PINS { B4, B3, A15, A14, A13 }
-#define MATRIX_COL_PINS { C14, C15, A0, A1, A2, A3, A4, A5, A6, A7, B0, B1, A8, A9 }
+#define MATRIX_ROW_PINS \
+    { B4, B3, A15, A14, A13 }
+#define MATRIX_COL_PINS \
+    { C14, C15, A0, A1, A2, A3, A4, A5, A6, A7, B0, B1, A8, A9 }
 
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION ROW2COL
@@ -39,8 +41,12 @@
 #define DRIVER_COUNT 1
 #define DRIVER_ADDR_1 0b1110111
 
+#define CONSTANT_CURRENT_STEP \
+    { 0xCC, 0xCC, 0x60, 0xCC, 0xCC, 0x60, 0xCC, 0xCC, 0x60, 0xCC, 0xCC, 0x60 }
+
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID  { {4,4} }
+#define SCAN_COUNT_MAX 100
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
@@ -50,9 +56,6 @@
 
 /* turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
-
-/* Set USB polling interval to 1 milliseconds */
-#define USB_POLLING_INTERVAL_MS 1
 
 /* We have 2KB EEPROM size on STM32L432 */
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
@@ -107,14 +110,5 @@
 #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 // #define RGB_MATRIX_KEYPRESSES
 
-/* Allow VIA to edit lighting */
-#ifdef VIA_ENABLE
-#    define VIA_QMK_RGBLIGHT_ENABLE
-#endif
-
 /* Enable receive custom command from host */
 #define RAW_HID_CMD 0xAB
-
-/* Q4 uses single led controller chip, so define the LOW_CURRENT_MODE
- * (effective in ckled2001.c) to set the current page individually. */
-#define LOW_CURRENT_MODE

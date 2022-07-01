@@ -1,7 +1,5 @@
 # Keychron V2
 
-![Keychron V2]()
-
 A customizable 65% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)

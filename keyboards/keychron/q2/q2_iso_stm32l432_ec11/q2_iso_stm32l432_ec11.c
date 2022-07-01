@@ -122,7 +122,7 @@ led_config_t g_led_config = {
         // RGB LED Index to Flag
         1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    1,
         1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,       1,
-        8, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    1,
+        1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    1,
         1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1, 1,
         1, 1, 1,          4,          1, 1, 1, 1, 1, 1
     }
@@ -133,7 +133,9 @@ led_config_t g_led_config = {
 #ifdef ENCODER_ENABLE
 
 bool encoder_update_kb(uint8_t index, bool clockwise) {
-    if (!encoder_update_user(index, clockwise)) { return false; }
+    if (!encoder_update_user(index, clockwise)) {
+        return false;
+    }
     if (index == 0) {
         if (clockwise) {
             tap_code_delay(KC_VOLU, TAP_CODE_DELAY);
@@ -143,7 +145,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     }
     return true;
 }
-
+#    if defined(PAL_USE_CALLBACKS)
 void encoder0_pad_cb(void *param) {
     (void)param;
 
@@ -158,5 +160,5 @@ void keyboard_post_init_kb(void) {
     palSetLineCallback(encoders_pad_a[0], encoder0_pad_cb, NULL);
     palSetLineCallback(encoders_pad_b[0], encoder0_pad_cb, NULL);
 }
-
+#    endif
 #endif

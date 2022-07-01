@@ -38,6 +38,7 @@ const ckled2001_led PROGMEM g_ckled2001_leds[DRIVER_LED_TOTAL] = {
     {0, I_11,   G_11,   H_11},
     {0, I_12,   G_12,   H_12},
     {0, I_13,   G_13,   H_13},
+    // {0, I_14,   G_14,   H_14}, // Encoder
     {0, I_15,   G_15,   H_15},
     {0, I_16,   G_16,   H_16},
     {1, I_15,   G_15,   H_15},
@@ -145,7 +146,7 @@ led_config_t g_led_config = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,    1, 1, 1,
         1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1,
         1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1,
-        8, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,
+        9, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,
         1,    4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,    1,
         1, 1, 1,          4,          1, 1, 1, 1, 1, 1, 1,
     }
@@ -166,7 +167,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     }
     return true;
 }
-
+#    ifdef PAL_USE_CALLBACKS
 void encoder0_pad_cb(void *param) {
     (void)param;
 
@@ -181,5 +182,5 @@ void keyboard_post_init_kb(void) {
     palSetLineCallback(encoders_pad_a[0], encoder0_pad_cb, NULL);
     palSetLineCallback(encoders_pad_b[0], encoder0_pad_cb, NULL);
 }
-
+#    endif
 #endif
