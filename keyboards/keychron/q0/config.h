@@ -16,6 +16,13 @@
 
 #pragma once
 
+#define RGBLIGHT_MAX_LAYERS 5
+#define RGBLIGHT_LIMIT_VAL 10
+#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+#define TAPPING_TERM 200
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT  400
+
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x3434
 #define MANUFACTURER    Keychron
