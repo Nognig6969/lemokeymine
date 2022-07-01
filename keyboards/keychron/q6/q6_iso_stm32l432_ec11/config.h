@@ -18,11 +18,13 @@
 
 /* USB Device descriptor parameter */
 #define PRODUCT_ID 0x0163
-#define DEVICE_VER 0x0100
+#define DEVICE_VER 0x0101
 
 /* Key matrix pins */
-#define MATRIX_ROW_PINS { B5, B4, B3, A15, A14, A13 }
-#define MATRIX_COL_PINS { A10, A9, A8, B1, B0, A7, A6, A5, A4, A3, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN }
+#define MATRIX_ROW_PINS \
+    { B5, B4, B3, A15, A14, A13 }
+#define MATRIX_COL_PINS \
+    { A10, A9, A8, B1, B0, A7, A6, A5, A4, A3, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN }
 #define NO_PIN_NUM 10
 #define CLEAR_VAL 0x3FF
 

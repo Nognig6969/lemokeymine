@@ -50,6 +50,11 @@ key_combination_t key_comb_list[2] = {
 #define KC_TASK KC_TASK_VIEW
 #define KC_FLXP KC_FILE_EXPLORER
 
+#define KC_LOPTN KC_LOPT
+#define KC_ROPTN KC_ROPT
+#define KC_LCMMD KC_LCMD
+#define KC_RCMMD KC_RCMD
+
 static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -117,6 +122,10 @@ void encoder_action_register(uint8_t index, bool clockwise) {
     action_exec(encoder_event);
 }
 
+void matrix_scan_user(void) {
+    encoder_action_unregister();
+}
+
 bool encoder_update_user(uint8_t index, bool clockwise) {
     encoder_action_register(index, clockwise);
     return false;
@@ -124,22 +133,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 #endif
 
-void matrix_scan_user(void) {
-#if defined(VIA_ENABLE) && defined(ENCODER_ENABLE)
-    encoder_action_unregister();
-#endif
-    /* Set timers for factory reset and backlight test */
-    timer_task_start();
-}
-
-bool dip_switch_update_user(uint8_t index, bool active) {
-    /* Send default layer state to host */
-    system_switch_state_report(index, active);
-    return true;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    process_other_record(keycode, record);
     switch (keycode) {
         case KC_MISSION_CONTROL:
             if (record->event.pressed) {

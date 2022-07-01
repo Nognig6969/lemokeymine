@@ -58,7 +58,6 @@ key_combination_t key_comb_list[4] = {
 };
 
 static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
-// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_all(
         KC_ESC,   KC_BRID,  KC_BRIU,  KC_MCTL,  KC_LPAD,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,   KC_VOLU,    KC_VOLD, KC_MUTE, KC_VOLU,  KC_SNAP,  KC_SIRI,  RGB_MOD,  KC_F13,   KC_F14,   KC_F15,   KC_F16,
@@ -89,7 +88,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,              KC_TRNS,            KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,
         KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                                KC_TRNS,  KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS),
 };
-// clang-format on
 #if defined(VIA_ENABLE) && defined(ENCODER_ENABLE)
 
 #    define ENCODERS 1
@@ -100,7 +98,11 @@ static keypos_t encoder_ccw[ENCODERS]   = {{7, 5}};
 void encoder_action_unregister(void) {
     for (int index = 0; index < ENCODERS; ++index) {
         if (encoder_state[index]) {
-            keyevent_t encoder_event = (keyevent_t){.key = encoder_state[index] >> 1 ? encoder_cw[index] : encoder_ccw[index], .pressed = false, .time = (timer_read() | 1)};
+            keyevent_t encoder_event = (keyevent_t){
+                .key = encoder_state[index] >> 1 ? encoder_cw[index] : encoder_ccw[index],
+                .pressed = false,
+                .time = (timer_read() | 1)
+            };
             encoder_state[index]     = 0;
             action_exec(encoder_event);
         }
@@ -108,7 +110,11 @@ void encoder_action_unregister(void) {
 }
 
 void encoder_action_register(uint8_t index, bool clockwise) {
-    keyevent_t encoder_event = (keyevent_t){.key = clockwise ? encoder_cw[index] : encoder_ccw[index], .pressed = true, .time = (timer_read() | 1)};
+    keyevent_t encoder_event = (keyevent_t){
+        .key = clockwise ? encoder_cw[index] : encoder_ccw[index],
+        .pressed = true,
+        .time = (timer_read() | 1)
+    };
     encoder_state[index]     = (clockwise ^ 1) | (clockwise << 1);
     action_exec(encoder_event);
 }
