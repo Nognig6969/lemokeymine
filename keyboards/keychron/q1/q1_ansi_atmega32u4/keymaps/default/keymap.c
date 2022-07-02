@@ -99,14 +99,14 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  [TD_11] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_F11),
  [TD_12] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_F12)
 };
-
+/*
 #define KC_MCTL KC_MISSION_CONTROL
 #define KC_LPAD KC_LAUNCHPAD
 #define KC_TASK KC_TASK_VIEW
 #define KC_FLXP KC_FILE_EXPLORER
 
 static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
-
+*/
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_82(
         TG(MAC_FN),          KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,  TG(WIN_BASE), KC_HOME,
@@ -141,12 +141,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT, MO(WIN_FN),KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 */
     [WIN_FN] = LAYOUT_ansi_82(
-        KC_TRNS,            KC_BRID,  KC_BRIU,     KC_TASK,  KC_FLXP,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_TRNS,  KC_TRNS,
+        KC_TRNS,            KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
         KC_GRV,   KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
         RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,     RGB_SAI,  RGB_SPI,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
         KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,     RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_PENT,            KC_TRNS,
         KC_TILD,            G(KC_EQL),G(KC_MINS),  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_MPLY,  KC_VOLU,
-        KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                                   KC_TRNS,  SGUI(KC_4),KC_TRNS, KC_MPRV,  KC_VOLD,  KC_MNXT)
+        KC_TRNS,  KC_TRNS,  KC_TRNS,                                   KC_TRNS,                                KC_TRNS,  SGUI(KC_4),KC_TRNS, KC_MPRV,  KC_VOLD,  KC_MNXT)
 };
 
 // leader key 2022/7/2
@@ -170,7 +170,7 @@ enum{
 
 void matrix_scan_user(void) {
     /* Set timers for factory reset and backlight test */
-    timer_task_start();
+//    timer_task_start();
     
     /*set layer indicator 2022/7/2*/
     uint8_t layer = biton32(layer_state);
@@ -227,7 +227,7 @@ void matrix_scan_user(void) {
     };
     
 }
-
+/*
 bool dip_switch_update_user(uint8_t index, bool active) {
     system_switch_state_report(index, active);
     return true;
@@ -276,3 +276,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;   // Process all other keycodes normally
     }
 }
+*/
