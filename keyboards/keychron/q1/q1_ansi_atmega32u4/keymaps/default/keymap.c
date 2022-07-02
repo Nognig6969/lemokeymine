@@ -49,26 +49,52 @@ key_combination_t key_comb_list[2] = {
 enum{
     TD_BE, TD_P50, CT_731,TD_LV,TD_ZX,TD_KO,
  TD_1, TD_2, TD_3, TD_4, TD_5, TD_6,
- TD_7, TD_8, TD_9, TD_10, TD_11, TD_12
+ TD_7, TD_8, TD_9, TD_10, TD_11, TD_12,
+    CT_NUM
 };
 
 void triple_numpad (qk_tap_dance_state_t *state, void *user_data);
 void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
-    if (state->count == 2) {
+    if (state->count == 1) {
         register_code16(KC_P7);
-    } else if(state->count == 3){
+    } else if(state->count == 2){
         register_code(KC_P3);
     } else {
         register_code(KC_P1);
     }
     
-    if (state->count == 2) {
+    if (state->count == 1) {
         unregister_code16(KC_P7);
-    } else if(state->count == 3) {
+    } else if(state->count == 2) {
         unregister_code(KC_P3);
     } else {
         unregister_code(KC_P1);
+    }
+};
 
+void one_eight (qk_tap_dance_state_t *state, void *user_data);
+void one_eight(qk_tap_dance_state_t *state, void *user_data) {
+ if (state->count == 1) {
+                 register_code16(KC_P8);
+    } else if(state->count == 2){
+                 register_code16(KC_P6);
+    } else if(state->count == 3){
+                register_code16(KC_P4);
+    } else if(state->count == 4){
+                register_code16(KC_P2);
+    } else {
+                register_code16(KC_P1);
+    }
+ if (state->count == 1) {
+              unregister_code16(KC_P8);
+    } else if(state->count == 2) {
+              unregister_code16(KC_P6);
+    } else if(state->count == 3){
+              unregister_code16(KC_P4);
+    } else if(state->count == 4){
+              unregister_code16(KC_P2);
+    } else {
+              unregister_code16(KC_P1);
     }
 };
 
@@ -76,8 +102,12 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_P7);
     unregister_code16(KC_P3);
     unregister_code16(KC_P1);
+    unregister_code16(KC_P8);
+    unregister_code16(KC_P6);
+    unregister_code16(KC_P4);
+    unregister_code16(KC_P2);
+    unregister_code16(KC_P1);
 };
-
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_BE] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_E),
@@ -97,7 +127,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  [TD_9]   = ACTION_TAP_DANCE_DOUBLE(KC_9, KC_F9),
  [TD_10] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_F10),
  [TD_11] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_F11),
- [TD_12] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_F12)
+ [TD_12] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_F12),
+    [CT_NUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset)
 };
 /*
 #define KC_MCTL KC_MISSION_CONTROL
@@ -109,28 +140,28 @@ static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
 */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_82(
-        TG(MAC_FN),          KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,  TG(WIN_BASE), KC_HOME,
-        KC_ESC,     TD(TD_1),TD(TD_2), TD(TD_3), TD(TD_4), TD(TD_5), TD(TD_6), TD(TD_7), TD(TD_8), TD(TD_9), TD(TD_10),TD(TD_11),TD(TD_12),KC_BSPC,               TD(TD_P50),
-        KC_TAB,     KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,               KC_P9,
-        KC_LCTL,    KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,                TD(CT_731),
-        KC_LSFT,             KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,   KC_UP,
-        MO(WIN_FN),KC_LOPTN, KC_LCMMD,                               KC_SPC,                                 KC_RCMMD, KC_LEAD, MO(WIN_FN),KC_LEFT,   KC_DOWN,    KC_RGHT),
+        TG(MAC_FN),          KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    KC_COLN,
+        KC_ESC,     TD(TD_1),TD(TD_2), TD(TD_3), TD(TD_4), TD(TD_5), TD(TD_6), TD(TD_7), TD(TD_8), TD(TD_9), TD(TD_10),TD(TD_11),TD(TD_12),KC_BSPC,             KC_DQT,
+        KC_TAB,     KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,             KC_TILD,
+        KC_LCTL,    KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,              KC_GRV,
+        KC_LSFT,             KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,
+        MO(WIN_FN),KC_LOPTN, KC_LCMMD,                               KC_SPC,                                 KC_RCMMD, KC_LEAD, MO(WIN_FN),KC_LEFT, KC_DOWN,    KC_RGHT),
 
     [MAC_FN] = LAYOUT_ansi_82(
-        TO(MAC_BASE),         KC_TRNS,  KC_TRNS,    KC_TRNS,     KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_B,     KC_F,     KC_H,     S(KC_S),  KC_F12,   KC_PDOT,  KC_TRNS,
-        G(KC_EQL),G(KC_MINS), KC_F12,   KC_F7,      KC_F6,       TD(TD_KO), G(KC_K),   KC_TRNS,  KC_E,     KC_C,     KC_1,     KC_2,     KC_3,     KC_BSPC,            KC_TRNS,
-        KC_WH_U,  KC_WH_D,    KC_ESC,   KC_SLSH,    ALT_T(KC_R), KC_F1,     G(KC_DOT), KC_TRNS,  A(KC_Q),  KC_A,     KC_Z,     KC_Y,     KC_X,     KC_TAB,             KC_TRNS,
-        KC_LEAD,  G(KC_E),    KC_TRNS,  A(KC_LCTL), TD(TD_BE),   KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_K,     KC_L,     KC_R,     KC_G,               TO(MAC_BASE),       KC_TRNS,
-        KC_TRNS,              KC_U,     G(KC_G),    TD(TD_ZX),   TD(TD_LV), KC_TRNS,   KC_TRNS,  KC_M,     KC_J,     KC_S,     KC_SLSH,            KC_RSFT,   KC_P8,
-        KC_TRNS,  KC_TRNS,    KC_TRNS,                                      KC_TRNS,                                 KC_RCMMD, KC_LEAD,  KC_LCTL,  KC_P4,     KC_P2,   KC_P6),
+        TO(WIN_BASE),         KC_TRNS,  KC_TRNS,    KC_TRNS,     KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,
+        G(KC_EQL),G(KC_MINS), KC_F12,   KC_F7,      KC_F6,       TD(TD_KO), G(KC_K),   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_TRNS,
+        KC_WH_U,  KC_WH_D,    KC_ESC,   KC_SLSH,    ALT_T(KC_R), KC_F1,     G(KC_E),   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_TRNS,
+        KC_LEAD,  TD(CT_NUM), KC_S,     A(KC_LCTL), TD(TD_BE),   KC_G,      KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,          KC_TRNS,
+        KC_TRNS,              KC_U,     G(KC_G),    TD(TD_ZX),   TD(TD_LV), KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,
+        KC_TRNS,  KC_TRNS,    KC_TRNS,                                      KC_TRNS,                                 KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS),
 
     [WIN_BASE] = LAYOUT_ansi_82(
-        KC_ESC,             KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   TO(MAC_BASE),  KC_INS,
-        KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,                 KC_PGUP,
+        TO(MAC_BASE),       KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_PDOT,       KC_HOME,
+        KC_ESC,   KC_1,     KC_2,     KC_3,     KC_GRV,   KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,                 KC_PGUP,
         KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,                 KC_PGDN,
-        KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,                  KC_HOME,
+        KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,                  KC_HOME,
         KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,    KC_UP,
-        KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT, MO(WIN_FN),KC_RCTL,  KC_LEFT,    KC_DOWN,     KC_RGHT),
+     TD(CT_731),  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  KC_LEAD,  KC_RCTL,  KC_LEFT,    KC_DOWN,     KC_RGHT),
 /*
     [WIN_BASE] = LAYOUT_ansi_82(
         KC_ESC,             KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL,   KC_INS,

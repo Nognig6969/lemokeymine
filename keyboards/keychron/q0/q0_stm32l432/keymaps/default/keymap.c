@@ -134,17 +134,17 @@ void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
     if (state->count == 2) {
         register_code16(KC_P7);
     } else if(state->count == 3){
-        register_code(KC_P3);
+        register_code16(KC_P3);
     } else {
-        register_code(KC_P1);
+        register_code16(KC_P1);
     }
     
     if (state->count == 2) {
         unregister_code16(KC_P7);
     } else if(state->count == 3) {
-        unregister_code(KC_P3);
+        unregister_code16(KC_P3);
     } else {
-        unregister_code(KC_P1);
+        unregister_code16(KC_P1);
 
     }
 };
