@@ -148,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         G(KC_EQL),G(KC_MINS), KC_F12,   KC_F7,      KC_F6,       TD(TD_KO), G(KC_K),   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_TRNS,
         KC_WH_U,  KC_WH_D,    KC_ESC,   KC_SLSH,    ALT_T(KC_R), KC_F1,     G(KC_E),   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_TRNS,
         KC_LEAD,  TD(CT_NUM), KC_S,     A(KC_LCTL), TD(TD_BE),   KC_G,      KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,          KC_TRNS,
-        KC_TRNS,              KC_U,     G(KC_G),    TD(TD_ZX),   TD(TD_LV), KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,
+        KC_TRNS,              KC_U,     G(KC_D),    TD(TD_ZX),   TD(TD_LV), KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,
         KC_TRNS,  KC_TRNS,    KC_TRNS,                                      KC_TRNS,                                 KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS),
 
     [WIN_BASE] = LAYOUT_ansi_82(
