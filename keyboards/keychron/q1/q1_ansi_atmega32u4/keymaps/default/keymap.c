@@ -58,32 +58,30 @@ void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
     if (state->count == 1) {
         register_code16(KC_P7);
     } else if(state->count == 2){
-        register_code(KC_P3);
+        register_code16(KC_P3);
     } else {
-        register_code(KC_P1);
+        register_code16(KC_P1);
     }
     
     if (state->count == 1) {
         unregister_code16(KC_P7);
     } else if(state->count == 2) {
-        unregister_code(KC_P3);
+        unregister_code16(KC_P3);
     } else {
-        unregister_code(KC_P1);
+        unregister_code16(KC_P1);
     }
 };
 
-void one_eight (qk_tap_dance_state_t *state, void *user_data);
-void one_eight(qk_tap_dance_state_t *state, void *user_data) {
+void two_eight (qk_tap_dance_state_t *state, void *user_data);
+void two_eight(qk_tap_dance_state_t *state, void *user_data) {
  if (state->count == 1) {
                  register_code16(KC_P8);
     } else if(state->count == 2){
                  register_code16(KC_P6);
     } else if(state->count == 3){
                 register_code16(KC_P4);
-    } else if(state->count == 4){
+    }  else {
                 register_code16(KC_P2);
-    } else {
-                register_code16(KC_P1);
     }
  if (state->count == 1) {
               unregister_code16(KC_P8);
@@ -91,10 +89,8 @@ void one_eight(qk_tap_dance_state_t *state, void *user_data) {
               unregister_code16(KC_P6);
     } else if(state->count == 3){
               unregister_code16(KC_P4);
-    } else if(state->count == 4){
-              unregister_code16(KC_P2);
     } else {
-              unregister_code16(KC_P1);
+              unregister_code16(KC_P2);
     }
 };
 
@@ -106,7 +102,7 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_P6);
     unregister_code16(KC_P4);
     unregister_code16(KC_P2);
-    unregister_code16(KC_P1);
+    
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -128,7 +124,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
  [TD_10] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_F10),
  [TD_11] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_F11),
  [TD_12] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_F12),
-    [CT_NUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset)
+    [CT_NUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, two_eight, dance_cln_reset)
 };
 /*
 #define KC_MCTL KC_MISSION_CONTROL
@@ -174,8 +170,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [WIN_FN] = LAYOUT_ansi_82(
         KC_TRNS,            KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
         KC_GRV,   KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
-        RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,     RGB_SAI,  RGB_SPI,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
-        KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,     RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_PENT,            KC_TRNS,
+        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+        KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_PENT,            KC_TRNS,
         KC_TILD,            G(KC_EQL),G(KC_MINS),  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_MPLY,  KC_VOLU,
         KC_TRNS,  KC_TRNS,  KC_TRNS,                                   KC_TRNS,                                KC_TRNS,  SGUI(KC_4),KC_TRNS, KC_MPRV,  KC_VOLD,  KC_MNXT)
 };
@@ -205,19 +201,19 @@ void matrix_scan_user(void) {
     
     /*set layer indicator 2022/7/2*/
     uint8_t layer = biton32(layer_state);
-//dimgray, brown, fireblick, forestgreen
+//darkgrey, aqua, purple, gold
     switch (layer){
         case LED_LAYER_1:
-            rgb_matrix_set_color_all(0x69, 0x69, 0x69);
+            rgb_matrix_set_color_all(0xA9, 0xA9, 0xA9);
             break;
         case LED_LAYER_2:
-            rgb_matrix_set_color_all(0x60, 0x30, 0x00);
+            rgb_matrix_set_color_all(0x00, 0xFF, 0xFF);
             break;
         case LED_LAYER_3:
-            rgb_matrix_set_color_all(0xb2, 0x22, 0x22);
+            rgb_matrix_set_color_all(0x80, 0x00, 0x80);
             break;
         case LED_LAYER_4:
-            rgb_matrix_set_color_all(0x22, 0x88, 0x22);
+            rgb_matrix_set_color_all(0xFF, 0xD7, 0x00);
             break;
     };
     /*set leader key 2022/7/2*/
