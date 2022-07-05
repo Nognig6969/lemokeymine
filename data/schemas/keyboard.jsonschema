@@ -1,27 +1,7 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "qmk.keyboard.v1",
     "title": "Keyboard Information",
-    "definitions": {
-        "encoder_config": {
-            "type": "object",
-            "properties": {
-                "rotary": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "required": ["pin_a", "pin_b"],
-                        "properties": {
-                            "pin_a": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                            "pin_b": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                            "resolution": {"$ref": "qmk.definitions.v1#/unsigned_int"} 
-                        }
-                    }
-                }
-            }
-        }
-    },
     "type": "object",
     "properties": {
         "keyboard_name": {"$ref": "qmk.definitions.v1#/text_identifier"},
@@ -60,12 +40,12 @@
                 "breathing": {"type": "boolean"},
                 "breathing_period": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
                 "levels": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 31
+                    "type": "number",
+                    "min": 1,
+                    "max": 31,
+                    "multipleOf": 1
                 },
-                "pin": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                "on_state": {"$ref": "qmk.definitions.v1#/bit"}
+                "pin": {"$ref": "qmk.definitions.v1#/mcu_pin"}
             }
         },
         "bluetooth": {
@@ -133,22 +113,13 @@
             "type": "array",
             "items": {"$ref": "qmk.definitions.v1#/filename"}
         },
-        "encoder": {
-            "$ref": "#/definitions/encoder_config",
-            "properties": {
-                "enabled": {"type": "boolean"}
-            }
-        },
         "features": {"$ref": "qmk.definitions.v1#/boolean_array"},
         "indicators": {
             "type": "object",
             "properties": {
                 "caps_lock": {"$ref": "qmk.definitions.v1#/mcu_pin"},
                 "num_lock": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                "scroll_lock": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                "compose": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                "kana": {"$ref": "qmk.definitions.v1#/mcu_pin"},
-                "on_state": {"$ref": "qmk.definitions.v1#/bit"}
+                "scroll_lock": {"$ref": "qmk.definitions.v1#/mcu_pin"}
             }
         },
         "layout_aliases": {
@@ -183,11 +154,12 @@
                                     "minItems": 2,
                                     "maxItems": 2,
                                     "items": {
-                                        "type": "integer",
-                                        "minimum": 0
+                                        "type": "number",
+                                        "min": 0,
+                                        "multipleOf": 1
                                     }
                                 },
-                                "r": {"$ref": "qmk.definitions.v1#/signed_decimal"},
+                                "r": {"$ref": "qmk.definitions.v1#/unsigned_decimal"},
                                 "rx": {"$ref": "qmk.definitions.v1#/unsigned_decimal"},
                                 "ry": {"$ref": "qmk.definitions.v1#/unsigned_decimal"},
                                 "h": {"$ref": "qmk.definitions.v1#/key_unit"},
@@ -258,13 +230,14 @@
                                 "minItems": 2,
                                 "maxItems": 2,
                                 "items": {
-                                    "type": "integer",
-                                    "minimum": 0
+                                    "type": "number",
+                                    "min": 0,
+                                    "multipleOf": 1
                                 }
                             },
                             "x": {"$ref": "qmk.definitions.v1#/key_unit"},
                             "y": {"$ref": "qmk.definitions.v1#/key_unit"},
-                            "flags": {"$ref": "qmk.definitions.v1#/unsigned_int_8"}
+                            "flags": {"$ref": "qmk.definitions.v1#/unsigned_decimal"}
                         }
                     }
                 }
@@ -285,13 +258,14 @@
                                 "minItems": 2,
                                 "maxItems": 2,
                                 "items": {
-                                    "type": "integer",
-                                    "minimum": 0
+                                    "type": "number",
+                                    "min": 0,
+                                    "multipleOf": 1
                                 }
                             },
                             "x": {"$ref": "qmk.definitions.v1#/key_unit"},
                             "y": {"$ref": "qmk.definitions.v1#/key_unit"},
-                            "flags": {"$ref": "qmk.definitions.v1#/unsigned_int_8"}
+                            "flags": {"$ref": "qmk.definitions.v1#/unsigned_decimal"}
                         }
                     }
                 }
@@ -316,9 +290,10 @@
                         "blink": {"type": "boolean"},
                         "enabled": {"type": "boolean"},
                         "max": {
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 32
+                            "type": "number",
+                            "min": 1,
+                            "max": 32,
+                            "multipleOf": 1
                         },
                         "override_rgb": {"type": "boolean"}
                     }
@@ -332,8 +307,8 @@
                 "split": {"type": "boolean"},
                 "split_count": {
                     "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
+                    "minLength": 2,
+                    "maxLength": 2,
                     "items": {"$ref": "qmk.definitions.v1#/unsigned_int"}
                 }
             }
@@ -347,28 +322,18 @@
                 "idle_timeout": {"$ref": "qmk.definitions.v1#/unsigned_int"},
                 "unlock_sequence": {
                     "type": "array",
-                    "minItems": 1,
-                    "maxItems": 5,
+                    "minLength": 1,
+                    "maxLength": 5,
                     "items": {
                         "type": "array",
                         "minItems": 2,
                         "maxItems": 2,
                         "items": {
-                            "type": "integer",
-                            "minimum": 0
+                            "type": "number",
+                            "min": 0,
+                            "multipleOf": 1
                         }
                     }
-                }
-            }
-        },
-        "stenography": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "enabled": {"type": "boolean"},
-                "protocol": {
-                    "type": "string",
-                    "enum": ["all", "geminipr", "txbolt"]
                 }
             }
         },
@@ -400,24 +365,16 @@
                         }
                     }
                 },
-                "encoder": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "right": {
-                            "$ref": "#/definitions/encoder_config"
-                        }
-                    }
-                },
                 "main": {
                     "type": "string",
                     "enum": ["eeprom", "left", "matrix_grid", "pin", "right"]
                 },
                 "soft_serial_pin": {"$ref": "qmk.definitions.v1#/mcu_pin"},
                 "soft_serial_speed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 5
+                    "type": "number",
+                    "min": 0,
+                    "max": 5,
+                    "multipleOf": 1
                 },
                 "transport": {
                     "type": "object",
@@ -471,7 +428,7 @@
                 "force_nkro": {"type": "boolean"},
                 "pid": {"$ref": "qmk.definitions.v1#/hex_number_4d"},
                 "vid": {"$ref": "qmk.definitions.v1#/hex_number_4d"},
-                "max_power": {"$ref": "qmk.definitions.v1#/unsigned_int"},
+                "max_power": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
                 "no_startup_check": {"type": "boolean"},
                 "polling_interval": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
                 "shared_endpoint": {
@@ -482,7 +439,7 @@
                         "mouse": {"type": "boolean"}
                     }
                 },
-                "suspend_wakeup_delay": {"$ref": "qmk.definitions.v1#/unsigned_int"},
+                "suspend_wakeup_delay": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
                 "wait_for": {"type": "boolean"},
             }
         },
@@ -491,8 +448,8 @@
             "additionalProperties": false,
             "properties": {
                 "keys_per_scan": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
-                "tap_keycode_delay": {"$ref": "qmk.definitions.v1#/unsigned_int"},
-                "tap_capslock_delay": {"$ref": "qmk.definitions.v1#/unsigned_int"},
+                "tap_keycode_delay": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
+                "tap_capslock_delay": {"$ref": "qmk.definitions.v1#/unsigned_int_8"},
             }
         },
         "qmk_lufa_bootloader": {
