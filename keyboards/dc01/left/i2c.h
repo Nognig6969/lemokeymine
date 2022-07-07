@@ -1,4 +1,5 @@
-#pragma once
+#ifndef I2C_H
+#define I2C_H
 
 #include <stdint.h>
 
@@ -15,7 +16,7 @@
 #define SLAVE_BUFFER_SIZE 0x10
 
 // i2c SCL clock frequency
-#define SCL_CLOCK  400000L
+#define SCL_CLOCK  100000L
 
 extern volatile uint8_t i2c_slave_buffer[SLAVE_BUFFER_SIZE];
 
@@ -26,3 +27,5 @@ uint8_t i2c_master_write(uint8_t data);
 uint8_t i2c_master_read(int);
 void i2c_reset_state(void);
 void i2c_slave_init(uint8_t address);
+
+#endif

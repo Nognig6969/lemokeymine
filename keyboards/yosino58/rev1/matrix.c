@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <stdint.h>
 #include <stdbool.h>
-#include <string.h>
 #include <avr/io.h>
 #include <avr/wdt.h>
 #include <avr/interrupt.h>
@@ -30,12 +29,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "util.h"
 #include "matrix.h"
 #include "split_util.h"
-#include "quantum.h"
+#include "pro_micro.h"
+#include "config.h"
 
-#ifdef USE_MATRIX_I2C
+#ifdef USE_I2C
 #  include "i2c.h"
 #else // USE_SERIAL
-#  include "split_scomm.h"
+#  include "serial.h"
 #endif
 
 #ifndef DEBOUNCE
@@ -47,7 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 static uint8_t debouncing = DEBOUNCE;
 static const int ROWS_PER_HAND = MATRIX_ROWS/2;
 static uint8_t error_count = 0;
-uint8_t is_master = 0 ;
 
 static const uint8_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
 static const uint8_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
@@ -60,8 +59,16 @@ static matrix_row_t read_cols(void);
 static void init_cols(void);
 static void unselect_rows(void);
 static void select_row(uint8_t row);
-static uint8_t matrix_master_scan(void);
 
+__attribute__ ((weak))
+void matrix_init_quantum(void) {
+    matrix_init_kb();
+}
+
+__attribute__ ((weak))
+void matrix_scan_quantum(void) {
+    matrix_scan_kb();
+}
 
 __attribute__ ((weak))
 void matrix_init_kb(void) {
@@ -102,18 +109,13 @@ void matrix_init(void)
     unselect_rows();
     init_cols();
 
-    setPinOutput(B0);
-    setPinOutput(D5);
-    writePinHigh(D5);
-    writePinHigh(B0);
+    TX_RX_LED_INIT;
 
     // initialize matrix state: all keys off
     for (uint8_t i=0; i < MATRIX_ROWS; i++) {
         matrix[i] = 0;
         matrix_debouncing[i] = 0;
     }
-
-    is_master = has_usb();
 
     matrix_init_quantum();
 }
@@ -147,7 +149,7 @@ uint8_t _matrix_scan(void)
     return 1;
 }
 
-#ifdef USE_MATRIX_I2C
+#ifdef USE_I2C
 
 // Get rows from other half over i2c
 int i2c_transaction(void) {
@@ -182,67 +184,33 @@ i2c_error: // the cable is disconnceted, or something else went wrong
 
 #else // USE_SERIAL
 
-int serial_transaction(int master_changed) {
+int serial_transaction(void) {
     int slaveOffset = (isLeftHand) ? (ROWS_PER_HAND) : 0;
-#ifdef SERIAL_USE_MULTI_TRANSACTION
-    int ret=serial_update_buffers(master_changed);
-#else
-    int ret=serial_update_buffers();
-#endif
-    if (ret ) {
-        if(ret==2) writePinLow(B0);
+
+    if (serial_update_buffers()) {
         return 1;
     }
-    writePinHigh(B0);
-    memcpy(&matrix[slaveOffset],
-        (void *)serial_slave_buffer, SERIAL_SLAVE_BUFFER_LENGTH);
+
+    for (int i = 0; i < ROWS_PER_HAND; ++i) {
+        matrix[slaveOffset+i] = serial_slave_buffer[i];
+    }
     return 0;
 }
 #endif
 
 uint8_t matrix_scan(void)
 {
-    if (is_master) {
-        matrix_master_scan();
-    }else{
-        matrix_slave_scan();
-        int offset = (isLeftHand) ? ROWS_PER_HAND : 0;
-        memcpy(&matrix[offset],
-               (void *)serial_master_buffer, SERIAL_MASTER_BUFFER_LENGTH);
-        matrix_scan_quantum();
-    }
-    return 1;
-}
-
-
-uint8_t matrix_master_scan(void) {
-
     int ret = _matrix_scan();
-    int mchanged = 1;
 
-    int offset = (isLeftHand) ? 0 : ROWS_PER_HAND;
 
-#ifdef USE_MATRIX_I2C
-//    for (int i = 0; i < ROWS_PER_HAND; ++i) {
-        /* i2c_slave_buffer[i] = matrix[offset+i]; */
-//        i2c_slave_buffer[i] = matrix[offset+i];
-//    }
-#else // USE_SERIAL
-  #ifdef SERIAL_USE_MULTI_TRANSACTION
-    mchanged = memcmp((void *)serial_master_buffer,
-		      &matrix[offset], SERIAL_MASTER_BUFFER_LENGTH);
-  #endif
-    memcpy((void *)serial_master_buffer,
-	   &matrix[offset], SERIAL_MASTER_BUFFER_LENGTH);
-#endif
 
-#ifdef USE_MATRIX_I2C
+#ifdef USE_I2C
     if( i2c_transaction() ) {
 #else // USE_SERIAL
-    if( serial_transaction(mchanged) ) {
+    if( serial_transaction() ) {
 #endif
         // turn on the indicator led when halves are disconnected
-        writePinLow(D5);
+        TXLED1;
 
         error_count++;
 
@@ -255,38 +223,36 @@ uint8_t matrix_master_scan(void) {
         }
     } else {
         // turn off the indicator led on no error
-        writePinHigh(D5);
+        TXLED0;
         error_count = 0;
     }
+
     matrix_scan_quantum();
+
     return ret;
 }
 
 void matrix_slave_scan(void) {
     _matrix_scan();
 
-    int offset = (isLeftHand) ? 0 : ROWS_PER_HAND;
+    int offset = (isLeftHand) ? 0 : (MATRIX_ROWS / 2);
 
-#ifdef USE_MATRIX_I2C
+#ifdef USE_I2C
     for (int i = 0; i < ROWS_PER_HAND; ++i) {
         /* i2c_slave_buffer[i] = matrix[offset+i]; */
         i2c_slave_buffer[i] = matrix[offset+i];
     }
 #else // USE_SERIAL
-  #ifdef SERIAL_USE_MULTI_TRANSACTION
-    int change = 0;
-  #endif
     for (int i = 0; i < ROWS_PER_HAND; ++i) {
-  #ifdef SERIAL_USE_MULTI_TRANSACTION
-        if( serial_slave_buffer[i] != matrix[offset+i] )
-	    change = 1;
-  #endif
         serial_slave_buffer[i] = matrix[offset+i];
     }
-  #ifdef SERIAL_USE_MULTI_TRANSACTION
-    slave_buffer_change_count += change;
-  #endif
 #endif
+}
+
+bool matrix_is_modified(void)
+{
+    if (debouncing) return false;
+    return true;
 }
 
 inline
@@ -305,10 +271,19 @@ void matrix_print(void)
 {
     print("\nr/c 0123456789ABCDEF\n");
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
-        print_hex8(row); print(": ");
-        print_bin_reverse16(matrix_get_row(row));
+        phex(row); print(": ");
+        pbin_reverse16(matrix_get_row(row));
         print("\n");
     }
+}
+
+uint8_t matrix_key_count(void)
+{
+    uint8_t count = 0;
+    for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
+        count += bitpop16(matrix[i]);
+    }
+    return count;
 }
 
 static void  init_cols(void)
