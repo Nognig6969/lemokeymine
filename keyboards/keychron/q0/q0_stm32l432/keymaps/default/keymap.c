@@ -56,10 +56,8 @@ void matrix_scan_user(void) {
         }
       SEQ_THREE_KEYS(KC_ESC, KC_ESC, KC_ESC) {
          register_code(KC_LGUI);
-         //register_code(KC_LSFT);
-          register_code(KC_T);
-          unregister_code(KC_T);
-         //unregister_code(KC_LSFT);
+               register_code(KC_T);
+             unregister_code(KC_T);
         unregister_code(KC_LGUI);
       }
         
@@ -108,26 +106,11 @@ enum{
     TD_P50,
     TD_LV,
     TD_ZX,
-    CT_CLN,
     CT_731,
     TD_KO
 };
 
 
-void dance_cln_finished(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        register_code16(KC_COLN);
-    } else {
-        register_code(KC_SCLN);
-    }
-    
-    if (state->count == 1) {
-        unregister_code16(KC_COLN);
-    } else {
-        unregister_code(KC_SCLN);
-    }
-    
-};
 
 void triple_numpad (qk_tap_dance_state_t *state, void *user_data);
 void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
@@ -136,7 +119,7 @@ void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
     } else if(state->count == 3){
         register_code16(KC_P3);
     } else {
-        register_code16(KC_P1);
+        register_code(KC_P1);
     }
     
     if (state->count == 2) {
@@ -144,7 +127,7 @@ void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
     } else if(state->count == 3) {
         unregister_code16(KC_P3);
     } else {
-        unregister_code16(KC_P1);
+        unregister_code(KC_P1);
 
     }
 };
@@ -160,7 +143,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_P50] = ACTION_TAP_DANCE_DOUBLE(KC_P5, KC_P0),
     [TD_LV] = ACTION_TAP_DANCE_DOUBLE(KC_L, KC_V),
     [TD_ZX] = ACTION_TAP_DANCE_DOUBLE(KC_Z, KC_X),
-    [CT_CLN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_cln_finished, dance_cln_reset),
     [CT_731] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
     [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O)
 };
@@ -172,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TG(_FN1),       MO(_RESERVED1),  TG(_RESERVED2), MO(_BOTTOM),
         KC_A,           KC_PDOT,         KC_TAB,         KC_ESC,
         KC_SPC,         KC_P8,           KC_HOME,
-        KC_P4,          TD(TD_P50),      KC_P6,          KC_LALT,
+        KC_P4,          TD(TD_P50),      KC_P6,          KC_LEAD,
         TD(CT_731),     KC_P2,           KC_P9,
         KC_LCTL,                         KC_LSFT,        KC_LCTL),
 
@@ -211,14 +193,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
-bool dip_switch_update_user(uint8_t index, bool active) {
+//bool dip_switch_update_user(uint8_t index, bool active) {
     /* Send default layer state to host */
-    system_switch_state_report(index, active);
-    return true;
-};
+//    system_switch_state_report(index, active);
+//    return true;
+//};
 
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    process_other_record(keycode, record);
-    return true;  // Process all other keycodes normally
-};
+//bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//    process_other_record(keycode, record);
+//    return true;  // Process all other keycodes normally
+//};

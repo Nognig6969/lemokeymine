@@ -31,9 +31,9 @@
 #define MATRIX_MASKED
 
 /*tapping and leader key 2022/7/2*/
-#define TAPPING_TERM 200
+#define TAPPING_TERM 300
 #define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT  400
+#define LEADER_TIMEOUT  300
 
 /* NKRO */
 #define FORCE_NKRO
