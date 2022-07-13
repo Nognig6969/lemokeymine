@@ -32,12 +32,6 @@ enum{
 //for leader key
 
 LEADER_EXTERNS();
-void leader_start(void) {
-  // sequence started
-}
-void leader_end(void) {
-  // sequence ended (no success/failure detection)
-}
 
 void matrix_scan_user(void) {
     
@@ -45,21 +39,20 @@ void matrix_scan_user(void) {
       leading = false;
       leader_end();
         SEQ_ONE_KEY(KC_ESC){
-            register_code(KC_ESC);
-            unregister_code(KC_ESC);
+            register_code(KC_LGUI);
+            register_code(KC_D);
+            unregister_code(KC_D);
+            unregister_code(KC_LGUI);
+            
     }
         SEQ_TWO_KEYS(KC_ESC, KC_ESC) {
-          register_code(KC_LGUI);
-          register_code(KC_D);
-          unregister_code(KC_D);
-          unregister_code(KC_LGUI);
-        }
-      SEQ_THREE_KEYS(KC_ESC, KC_ESC, KC_ESC) {
-         register_code(KC_LGUI);
-               register_code(KC_T);
+            register_code(KC_LGUI);
+             register_code(KC_T);
              unregister_code(KC_T);
-        unregister_code(KC_LGUI);
-      }
+           unregister_code(KC_LGUI);
+
+        }
+
         
         SEQ_ONE_KEY(KC_SLSH){
             register_code(KC_LGUI);
