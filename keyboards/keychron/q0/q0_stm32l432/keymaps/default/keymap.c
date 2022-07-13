@@ -144,13 +144,12 @@ enum layers { _BASE = 0, _FN1, _RESERVED1, _RESERVED2, _BOTTOM};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_numpad_6x4(
-        TG(_FN1),       TG(_RESERVED1),  TG(_RESERVED2), MO(_BOTTOM),
+        TG(_FN1),       TG(_RESERVED1),  TG(_RESERVED2), TG(_BOTTOM),
         KC_A,           KC_PDOT,         KC_TAB,         KC_ESC,
-        KC_SPC,         KC_P8,           KC_HOME,
+        KC_SLSH,         KC_P8,           KC_HOME,
         KC_P4,          TD(TD_P50),      KC_P6,          KC_LEAD,
-                                
         TD(CT_731),     KC_P2,           KC_P9,
-        KC_LCTL,                         KC_LSFT,        KC_LCTL),
+        KC_LEAD,                         KC_LSFT,        KC_LCTL),
 
     [_FN1] = LAYOUT_numpad_6x4(
         TO(_BASE),    MO(_RESERVED1), KC_U,        KC_G,
@@ -166,23 +165,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F7,       KC_F8,      KC_F9,
         KC_F4,       KC_F5,      KC_F6,          KC_TRNS,
         KC_F1,       KC_F2,      KC_F3,
-        KC_TRNS,                 KC_TRNS,        KC_TRNS),
+        KC_LGUI,                 KC_TRNS,        KC_TRNS),
 
     [_RESERVED2] = LAYOUT_numpad_6x4(
-        KC_I,       KC_LGUI,     TO(_BASE),     MO(_BOTTOM),
+        KC_I,       KC_LGUI,     TO(_BASE),     TG(_BOTTOM),
         KC_1,       KC_2,        KC_3,          KC_TRNS,
         KC_Q,       KC_M,        KC_A,
         KC_G,       KC_Y,        KC_R,          KC_TRNS,
         KC_S,       KC_X,        KC_Z,
-        KC_TRNS,                 KC_TRNS,       KC_TRNS),
+        KC_LGUI,                 KC_TRNS,       KC_TRNS),
     
     [_BOTTOM] = LAYOUT_numpad_6x4(
-         KC_N,      KC_LGUI,     TO(_BASE),     MO(_RESERVED2),
+         KC_N,      KC_LGUI,     TO(_BASE),     TG(_RESERVED2),
          KC_L,      KC_J,        KC_TRNS,       KC_TRNS,
          KC_F,      SGUI(KC_Z),        KC_F9,
          KC_E,      KC_ENT,      KC_K,          KC_TRNS,
          KC_D,      KC_H,        KC_C,
-         KC_TRNS,                KC_TRNS,       KC_TRNS)
+         KC_LGUI,                KC_TRNS,       KC_TRNS)
 };
 
 

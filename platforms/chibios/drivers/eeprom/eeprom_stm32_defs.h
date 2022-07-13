@@ -25,11 +25,11 @@
 #        ifndef FEE_PAGE_COUNT
 #            define FEE_PAGE_COUNT 2 // How many pages are used
 #        endif
-<<<<<<<< HEAD:platforms/chibios/eeprom_stm32_defs.h
+//<<<<<<<< HEAD:platforms/chibios/eeprom_stm32_defs.h
 #    elif defined(STM32F103xE) || defined(STM32F303xC) || defined(STM32F303xE) || defined(STM32F072xB) || defined(STM32F070xB)
-========
+//========
 #    elif defined(STM32F103xE) || defined(STM32F303xC) || defined(STM32F303xE) || defined(STM32F072xB) || defined(STM32F070xB) || defined(STM32L432xx)
->>>>>>>> playground:platforms/chibios/drivers/eeprom/eeprom_stm32_defs.h
+//>>>>>>>> playground:platforms/chibios/drivers/eeprom/eeprom_stm32_defs.h
 #        ifndef FEE_PAGE_SIZE
 #            define FEE_PAGE_SIZE 0x800 // Page size = 2KByte
 #        endif
