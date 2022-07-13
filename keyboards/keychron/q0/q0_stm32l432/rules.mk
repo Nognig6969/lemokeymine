@@ -26,7 +26,7 @@ LTO_ENABLE = yes
 
 
 # my_branch customized 2022/7/1
-VIA_ENABLE = no
+#VIA_ENABLE = no
 TAP_DANCE_ENABLE = yes
 LEADER_ENABLE = yes
 # my_brach customized 2022/7/1

@@ -16,14 +16,14 @@
 
 #pragma once
 
-/* USB Device descriptor parameter */
+/* USB Device descriptor parameter 
 <<<<<<< Updated upstream
 #define PRODUCT_ID 0x0100
 #define DEVICE_VER 0x0109
 =======
 #define PRODUCT_ID 0x0280
 #define DEVICE_VER 0x0108
->>>>>>> Stashed changes
+>>>>>>> Stashed changes*/
 
 /* key matrix size */
 #define MATRIX_ROWS 6
