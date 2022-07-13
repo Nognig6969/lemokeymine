@@ -151,20 +151,21 @@ enum layers { _BASE = 0, _FN1, _RESERVED1, _RESERVED2, _BOTTOM};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_numpad_6x4(
-        TG(_FN1),       MO(_RESERVED1),  TG(_RESERVED2), MO(_BOTTOM),
+        TG(_FN1),       TG(_RESERVED1),  TG(_RESERVED2), MO(_BOTTOM),
         KC_A,           KC_PDOT,         KC_TAB,         KC_ESC,
         KC_SPC,         KC_P8,           KC_HOME,
         KC_P4,          TD(TD_P50),      KC_P6,          KC_LEAD,
+                                
         TD(CT_731),     KC_P2,           KC_P9,
         KC_LCTL,                         KC_LSFT,        KC_LCTL),
 
     [_FN1] = LAYOUT_numpad_6x4(
-        TO(_BASE),    MO(_RESERVED1), KC_LGUI,     KC_LSFT,
-        G(KC_S),      KC_SPC,         A(KC_LCTL),  KC_TRNS,
-        KC_WH_U,      KC_SLSH,        ALT_T(KC_R),
-        KC_WH_D,      G(KC_EQL),      TD(TD_LV),   TD(TD_BE),
-        KC_F1,        G(KC_MINS),     TD(TD_KO),
-        KC_TRNS,                      TD(TD_ZX),   KC_LEAD),
+        TO(_BASE),    MO(_RESERVED1), KC_U,        KC_G,
+        KC_WH_U,      KC_WH_D,        KC_F1,       TD(TD_KO),
+        KC_ESC,       KC_SLSH,        ALT_T(KC_R),
+        KC_S,         A(KC_LCTL),     TD(TD_BE),   KC_LEAD,
+        KC_M,         TD(TD_ZX),      TD(TD_LV),
+        KC_LSFT,                      KC_LGUI,     KC_SPC),
     
     [_RESERVED1] = LAYOUT_numpad_6x4(
         KC_PENT,     TO(_BASE),  KC_HOME,        KC_END,
