@@ -57,7 +57,7 @@ key_combination_t key_comb_list[4] = {
     {2, {KC_LWIN, KC_C}}
 };
 
-static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
+//static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_87(
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,             KC_TRNS,            KC_TRNS,
         KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 };
-
+/*
 uint16_t prev;
 bool siri;
 
@@ -116,7 +116,7 @@ void matrix_scan_user(void) {
 }
 
 bool dip_switch_update_user(uint8_t index, bool active) {
-    /* Send default layer state to host */
+    // Send default layer state to host
     system_switch_state_report(index, active);
     return true;
 }
@@ -175,3 +175,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;  // Process all other keycodes normally
     }
 }
+*/

@@ -17,19 +17,36 @@
 #pragma once
 
 /* USB Device descriptor parameter */
+<<<<<<<< HEAD:keyboards/keychron/q10/q10_ansi_stm32l432_ec11/config.h
 #define PRODUCT_ID 0x01a1
 #define DEVICE_VER 0x0100
 
 /* RGB Matrix Configuration */
 #define DRIVER_1_LED_TOTAL 47
 #define DRIVER_2_LED_TOTAL 41
+========
+#define PRODUCT_ID 0x0115
+#define DEVICE_VER 0x0101
+
+/* RGB Matrix Configuration */
+#define DRIVER_1_LED_TOTAL 35
+#define DRIVER_2_LED_TOTAL 36
+>>>>>>>> playground:keyboards/keychron/q2/q2_jis_stm32l432_ec11/config.h
 #define DRIVER_LED_TOTAL (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)
 
 /* Encoder Configuration */
 #define ENCODERS_PAD_A { A10 }
+<<<<<<<< HEAD:keyboards/keychron/q10/q10_ansi_stm32l432_ec11/config.h
 #define ENCODERS_PAD_B { A8 }
+========
+#define ENCODERS_PAD_B { B5 }
+>>>>>>>> playground:keyboards/keychron/q2/q2_jis_stm32l432_ec11/config.h
 #define ENCODER_RESOLUTION 4
 #define ENCODER_DEFAULT_POS 0x3
 
 /* Enable caps-lock LED */
+<<<<<<<< HEAD:keyboards/keychron/q10/q10_ansi_stm32l432_ec11/config.h
 #define CAPS_LOCK_LED_INDEX 49
+========
+#define CAPS_LOCK_LED_INDEX 30
+>>>>>>>> playground:keyboards/keychron/q2/q2_jis_stm32l432_ec11/config.h

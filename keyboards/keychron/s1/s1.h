@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:keyboards/keychron/s1/s1.h
 /* Copyright 2022 @ Keychron (https://www.keychron.com)
+========
+/* Copyright 2021 @ Keychron (https://www.keychron.com)
+>>>>>>>> playground:keyboards/keychron/v7/v7.h
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +22,15 @@
 
 #include "quantum.h"
 
+<<<<<<<< HEAD:keyboards/keychron/s1/s1.h
 #if   defined(KEYBOARD_keychron_s1_s1_ansi_stm32l432)
 #    include "s1_ansi_stm32l432.h"
 #elif defined(KEYBOARD_keychron_s1_s1_iso_stm32l432)
 #    include "s1_iso_stm32l432.h"
+========
+#if defined(KEYBOARD_keychron_v7_v7_ansi_stm32l432)
+#    include "v7_ansi_stm32l432.h"
+#elif defined(KEYBOARD_keychron_v7_v7_iso_stm32l432)
+#    include "v7_iso_stm32l432.h"
+>>>>>>>> playground:keyboards/keychron/v7/v7.h
 #endif

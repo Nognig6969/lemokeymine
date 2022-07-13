@@ -1,5 +1,9 @@
+<<<<<<<< HEAD:keyboards/keychron/v7/halconf.h
 /* Copyright 2020 QMK
  *
+========
+/*
+>>>>>>>> playground:keyboards/labbe/labbeminiv1/labbeminiv1.h
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -18,4 +22,8 @@
 
 #define HAL_USE_I2C TRUE
 
+<<<<<<<< HEAD:keyboards/keychron/v7/halconf.h
 #include_next <halconf.h>
+========
+#define LAYOUT_wasd(k01, k10, k11, k12) { {KC_NO, k01, KC_NO}, {k10, k11, k12} }
+>>>>>>>> playground:keyboards/labbe/labbeminiv1/labbeminiv1.h

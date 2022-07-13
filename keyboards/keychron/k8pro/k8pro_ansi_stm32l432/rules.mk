@@ -29,6 +29,7 @@ LTO_ENABLE = yes
 #BLRETOOTH_ENABLE = yes
 #BLUETOOTH_DRIVER =RN42
 #BLUETOOTH_DRIVER = bluefruitLE
+VIA_ENABLE = no
 
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
