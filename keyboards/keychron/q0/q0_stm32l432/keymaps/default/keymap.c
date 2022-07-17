@@ -101,7 +101,8 @@ enum{
     TD_ZX,
     CT_731,
     TD_KO,
-    X_CTL
+    X_CTL,
+    SOME_OTHER_DANCE
 };
 
 
