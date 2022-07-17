@@ -29,6 +29,12 @@ enum layers{
 
 LEADER_EXTERNS();
 
+/*void leader_start(void) {
+}
+void leader_end(void) {
+}
+*/
+
 void matrix_scan_user(void) {
 
     LEADER_DICTIONARY() {
@@ -49,6 +55,21 @@ void matrix_scan_user(void) {
 
         }
 
+            register_code(KC_ESC);
+            unregister_code(KC_ESC);
+    }
+        SEQ_TWO_KEYS(KC_ESC, KC_ESC) {
+          register_code(KC_LGUI);
+          register_code(KC_D);
+          unregister_code(KC_D);
+          unregister_code(KC_LGUI);
+        }
+      SEQ_THREE_KEYS(KC_ESC, KC_ESC, KC_ESC) {
+         register_code(KC_LGUI);
+          register_code(KC_T);
+          unregister_code(KC_T);
+        unregister_code(KC_LGUI);
+      }
         
         SEQ_ONE_KEY(KC_SLSH){
             register_code(KC_LGUI);
@@ -64,18 +85,18 @@ void matrix_scan_user(void) {
             unregister_code(KC_LSFT);
           unregister_code(KC_LGUI);
         }
-    };
+    
     
 
     /*set layer indicator 2022/7/2*/
     uint8_t layer = biton32(layer_state);
-//dimgray, brown, fireblick, forestgreen
+//gray, darkturquoise, fireblick, forestgreen
     switch (layer){
         case LAYER_1:
-            rgb_matrix_set_color_all(0x69, 0x69, 0x69);
+            rgb_matrix_set_color_all(0x80, 0x80, 0x80);
             break;
         case LAYER_2:
-            rgb_matrix_set_color_all(0x60, 0x30, 0x00);
+            rgb_matrix_set_color_all(0x00, 0xCE, 0xD1);
             break;
         case LAYER_3:
             rgb_matrix_set_color_all(0xb2, 0x22, 0x22);
@@ -84,6 +105,7 @@ void matrix_scan_user(void) {
             rgb_matrix_set_color_all(0x22, 0x88, 0x22);
             break;
     }
+    
 };
 
 /*
@@ -116,6 +138,7 @@ enum{
  TD_7, TD_8, TD_9, TD_10, TD_11, TD_12,
     CT_NUM
 };
+
 
 void triple_numpad (qk_tap_dance_state_t *state, void *user_data);
 void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
@@ -172,6 +195,8 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_P2);
     unregister_code16(KC_P1);
 };
+
+
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_BE] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_E),
