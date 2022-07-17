@@ -95,12 +95,13 @@ void matrix_scan_user(void) {
 
 //tapdance_layerDeclarations
 enum{
-    TD_BE,
+//    TD_BE,
     TD_P50,
     TD_LV,
     TD_ZX,
     CT_731,
-    TD_KO
+    TD_KO,
+    X_CTL
 };
 
 
@@ -131,13 +132,68 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_P1);
 };
 
+typedef struct { bool is_press_action; int state; } tap;
+enum{
+ SINGLE_TP = 1,
+ SINGLE_HD = 2,
+ DOUBLE_TP = 3,
+ DOUBLE_SINGLE_TP = 4
+//ダブルシングルタップは同キーを続けて入力したい場合の入力ミスを防ぐため
+};
+//enum{ X_CTL = 0, SOME_OTHER_DANCE};
+
+int cur_dance (qk_tap_dance_state_t *state);
+void x_finished (qk_tap_dance_state_t *state, void *user_data);
+void x_reset     (qk_tap_dance_state_t *state, void *user_data);
+
+//keycap.cの末尾に追加
+int cur_dance (qk_tap_dance_state_t *state){
+ if(state -> count == 1){
+   if (state -> interrupted || !state -> pressed) return SINGLE_TP;
+     else return SINGLE_HD;
+}
+
+//ここから
+else  if (state -> count == 2 ){
+  if(state -> interrupted) return DOUBLE_SINGLE_TP;
+  else  return  DOUBLE_TP;
+}
+//ここまでは２つのキーを送信する場合の誤入力防止とダブルタップ
+
+static tap xtap_state = {
+ .is_press_action = true,
+ .state = 0
+};
+
+void x_finished(qk_tap_dance_state_t *state, void *user_data){
+ xtap_state.state = cur_dance(state);
+  switch (xtap_state.state){
+   case SINGLE_TP:  register_code(KC_B); break;
+   case SINGLE_HD: register_code(KC_LALT); break;
+   case DOUBLE_TP: register_code(KC_E);
+//「ee」と入力したい場合のため
+   case DOUBLE_SINGLE_TP: register_code(KC_E); unregister_code(KC_E); register_code(KC_E);
+  }
+};
+
+void x_reset(qk_tap_dance_state_t *state, void *user_data){
+switch (xtap_state.state){
+ case SINGLE_TP: unregister_code(KC_B); break;
+ case SINGLE_HD: unregister_code(KC_LALT); break;
+ case DOUBLE_TP: unregister_code(KC_E); break;
+ case DOUBLE_SINGLE_TP: unregister_code(KC_E);
+}
+xtap_state.state = 0;
+};
+
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_BE] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_E),
+//    [TD_BE] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_E),
     [TD_P50] = ACTION_TAP_DANCE_DOUBLE(KC_P5, KC_P0),
     [TD_LV] = ACTION_TAP_DANCE_DOUBLE(KC_L, KC_V),
     [TD_ZX] = ACTION_TAP_DANCE_DOUBLE(KC_Z, KC_X),
     [CT_731] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
-    [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O)
+    [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
+    [X_CTL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, x_reset)
 };
 
 enum layers { _BASE = 0, _FN1, _RESERVED1, _RESERVED2, _BOTTOM};
@@ -155,7 +211,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(_BASE),    MO(_RESERVED1), KC_U,        KC_G,
         KC_WH_U,      KC_WH_D,        KC_F1,       TD(TD_KO),
         KC_ESC,       KC_SLSH,        ALT_T(KC_R),
-        KC_S,         A(KC_LCTL),     TD(TD_BE),   KC_LEAD,
+        KC_S,         A(KC_LCTL),     KC_B,        KC_LEAD,
         KC_M,         TD(TD_ZX),      TD(TD_LV),
         KC_LSFT,                      KC_LGUI,     KC_SPC),
     
