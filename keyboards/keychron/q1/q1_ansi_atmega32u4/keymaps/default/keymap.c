@@ -90,13 +90,13 @@ void matrix_scan_user(void) {
 
     /*set layer indicator 2022/7/2*/
     uint8_t layer = biton32(layer_state);
-//dimgray, brown, fireblick, forestgreen
+//gray, darkturquoise, fireblick, forestgreen
     switch (layer){
         case LAYER_1:
-            rgb_matrix_set_color_all(0x69, 0x69, 0x69);
+            rgb_matrix_set_color_all(0x80, 0x80, 0x80);
             break;
         case LAYER_2:
-            rgb_matrix_set_color_all(0x60, 0x30, 0x00);
+            rgb_matrix_set_color_all(0x00, 0xCE, 0xD1);
             break;
         case LAYER_3:
             rgb_matrix_set_color_all(0xb2, 0x22, 0x22);
