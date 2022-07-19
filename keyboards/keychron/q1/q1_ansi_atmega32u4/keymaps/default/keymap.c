@@ -89,7 +89,7 @@ void matrix_scan_user(void) {
         unregister_code(KC_S);
         unregister_code(KC_LGUI);
        }
-};
+
 
     /*set layer indicator 2022/7/2*/
     uint8_t layer = biton32(layer_state);
@@ -109,7 +109,6 @@ void matrix_scan_user(void) {
             break;
     }
 };
-    
 
 /*
 enum custom_keycodes {
