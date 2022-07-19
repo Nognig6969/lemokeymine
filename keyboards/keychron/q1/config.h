@@ -36,7 +36,7 @@
 /*tapping and leader key 2022/7/2*/
 #define TAPPING_TERM 160
 #define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT  300
+#define LEADER_TIMEOUT  400
 
 /* NKRO */
 #define FORCE_NKRO

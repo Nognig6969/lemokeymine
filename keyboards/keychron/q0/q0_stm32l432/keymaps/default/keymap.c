@@ -173,18 +173,16 @@ void triple_numpad (qk_tap_dance_state_t *state, void *user_data){
     }
 };
 
-void one_eight (qk_tap_dance_state_t *state, void *user_data);
-void one_eight(qk_tap_dance_state_t *state, void *user_data) {
+void two_eight (qk_tap_dance_state_t *state, void *user_data);
+void two_eight(qk_tap_dance_state_t *state, void *user_data) {
  if (state->count == 1) {
                  register_code16(KC_P8);
     } else if(state->count == 2){
                  register_code16(KC_P6);
     } else if(state->count == 3){
                 register_code16(KC_P4);
-    } else if(state->count == 4){
-                register_code16(KC_P2);
     } else {
-                register_code16(KC_P1);
+                register_code16(KC_P2);
     }
  if (state->count == 1) {
               unregister_code16(KC_P8);
@@ -192,10 +190,8 @@ void one_eight(qk_tap_dance_state_t *state, void *user_data) {
               unregister_code16(KC_P6);
     } else if(state->count == 3){
               unregister_code16(KC_P4);
-    } else if(state->count == 4){
-              unregister_code16(KC_P2);
     } else {
-              unregister_code16(KC_P1);
+              unregister_code16(KC_P2);
     }
 };
 
@@ -250,8 +246,12 @@ void x_finished (qk_tap_dance_state_t *state, void *user_data){
 }
 
 void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
+    unregister_code16(KC_P8);
     unregister_code16(KC_P7);
+    unregister_code16(KC_P6);
+    unregister_code16(KC_P4);
     unregister_code16(KC_P3);
+    unregister_code16(KC_P2);
     unregister_code16(KC_P1);
     unregister_code16(KC_B);
     unregister_code16(KC_E);
@@ -273,7 +273,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_ZX] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_Z),
     [CT_731] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
     [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
-    [CT_NUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, one_eight, dance_cln_reset),
+    [CT_NUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, two_eight, dance_cln_reset),
     [TD_BEA] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
     [CT_F679] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_function, dance_cln_reset),
     [CT_GUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, g_u_m, dance_cln_reset)
