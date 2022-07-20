@@ -123,11 +123,27 @@ key_combination_t key_comb_list[2] = {
 
 //tap dance 2022/7/2 my branch
 enum{
-    TD_BE, TD_P50, CT_731,TD_LV,TD_ZX,TD_KO,
- TD_1, TD_2, TD_3, TD_4, TD_5, TD_6,
- TD_7, TD_8, TD_9, TD_10, TD_11, TD_12,
-    CT_NUM,
-    CT_F679,CT_GUM
+    TD_P50 = 0,
+    CT_731 = 1,
+    TD_LV  = 2,
+    TD_ZX  = 3,
+    TD_KO  = 4,
+    TD_1 = 5,
+    TD_2 = 6,
+    TD_3 = 7,
+    TD_4 = 8,
+    TD_5 = 9,
+    TD_6 = 10,
+    TD_7 = 11,
+    TD_8 = 12,
+    TD_9 = 13,
+    TD_10 = 14,
+    TD_11 = 16,
+    TD_12 = 17,
+    CT_NUM = 18,
+    CT_F679 = 19,
+    CT_GUM = 20,
+    TD_BEA = 21, SOME_OTHER_DANCE
 };
 
 
@@ -225,7 +241,7 @@ typedef enum{
 typedef struct { bool is_press_action;
   td_state_t  state; } td_tap_t;
 
-enum{ TD_BEA = 0, SOME_OTHER_DANCE};
+//enum{ TD_BEA = 0, SOME_OTHER_DANCE};
 
 
 td_state_t cur_dance (qk_tap_dance_state_t *state){
