@@ -262,6 +262,8 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_G);
     unregister_code16(KC_U);
     unregister_code16(KC_M);
+    unregister_code16(KC_T);
+    unregister_code16(KC_D);
 };
 
 
