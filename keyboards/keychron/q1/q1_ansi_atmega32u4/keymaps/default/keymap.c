@@ -123,11 +123,27 @@ key_combination_t key_comb_list[2] = {
 
 //tap dance 2022/7/2 my branch
 enum{
-    TD_BE, TD_P50, CT_731,TD_LV,TD_ZX,TD_KO,
- TD_1, TD_2, TD_3, TD_4, TD_5, TD_6,
- TD_7, TD_8, TD_9, TD_10, TD_11, TD_12,
-    CT_NUM,
-    CT_F679,CT_GUM
+    TD_P50 = 0,
+    CT_731 = 1,
+    TD_LV  = 2,
+    TD_ZX  = 3,
+    TD_KO  = 4,
+    TD_1 = 5,
+    TD_2 = 6,
+    TD_3 = 7,
+    TD_4 = 8,
+    TD_5 = 9,
+    TD_6 = 10,
+    TD_7 = 11,
+    TD_8 = 12,
+    TD_9 = 13,
+    TD_10 = 14,
+    TD_11 = 16,
+    TD_12 = 17,
+    CT_NUM = 18,
+    CT_F679 = 19,
+    CT_GUM = 20,
+    TD_BEA = 21, SOME_OTHER_DANCE
 };
 
 
@@ -225,7 +241,7 @@ typedef enum{
 typedef struct { bool is_press_action;
   td_state_t  state; } td_tap_t;
 
-enum{ TD_BEA = 0, SOME_OTHER_DANCE};
+//enum{ TD_BEA = 0, SOME_OTHER_DANCE};
 
 
 td_state_t cur_dance (qk_tap_dance_state_t *state){
@@ -321,12 +337,12 @@ static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
 */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_ansi_82(
-        TG(LAYER_2),          KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    KC_NO,
+        TG(LAYER_2),         KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    KC_NO,
         KC_ESC,     TD(TD_1),TD(TD_2), TD(TD_3), TD(TD_4), TD(TD_5), TD(TD_6), TD(TD_7), TD(TD_8), TD(TD_9), TD(TD_10),TD(TD_11),TD(TD_12),KC_BSPC,             KC_WH_U,
         KC_TAB,     KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,             KC_WH_D,
         KC_LCTL,    KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,              KC_GRV,
         KC_LSFT,             KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,
-        MO(LAYER_4),KC_LALT,  KC_LGUI,                                KC_SPC,                                 KC_RGUI,  KC_LEAD, MO(LAYER_4),KC_LEFT, KC_DOWN,    KC_RGHT),
+        MO(LAYER_4),KC_LALT, KC_LGUI,                                KC_SPC,                                 KC_RGUI,  KC_RCTL,MO(LAYER_4),KC_LEFT, KC_DOWN,    KC_RGHT),
 
     [LAYER_2] = LAYOUT_ansi_82(
         TO(LAYER_3),       KC_F12,     KC_F2,     KC_F3,      KC_F4,       KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,  KC_TRNS, KC_TRNS,

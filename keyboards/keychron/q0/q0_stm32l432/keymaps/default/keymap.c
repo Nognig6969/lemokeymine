@@ -102,15 +102,36 @@ void matrix_scan_user(void) {
 
 //tapdance_layerDeclarations
 enum{
-//    TD_BE,
-    TD_P50,
-    TD_LV,
-    TD_ZX,
-    CT_731,
-    TD_KO,
-    CT_NUM,
-    CT_F679,
-    CT_GUM
+    TD_P50 = 0,
+    CT_731 = 1,
+    TD_LV  = 2,
+    TD_ZX  = 3,
+    TD_KO  = 4,
+    CT_NUM = 5,
+    CT_F679 = 6,
+    CT_GUM = 7,
+    CT_123 = 8,
+    TD_BEA = 9, SOME_OTHER_DANCE
+};
+
+void triple_number (qk_tap_dance_state_t *state, void *user_data);
+void triple_number (qk_tap_dance_state_t *state, void *user_data){
+    if (state->count == 1) {
+        register_code16(KC_1);
+    } else if(state->count == 2){
+        register_code16(KC_2);
+    } else {
+        register_code16(KC_3);
+    }
+    
+    if (state->count == 1) {
+        unregister_code16(KC_1);
+    } else if(state->count == 2) {
+        unregister_code16(KC_2);
+    } else {
+        unregister_code16(KC_3);
+
+    }
 };
 
 void g_u_m (qk_tap_dance_state_t *state, void *user_data);
@@ -208,9 +229,6 @@ typedef enum{
 typedef struct { bool is_press_action;
   td_state_t  state; } td_tap_t;
 
-enum{ TD_BEA = 0, SOME_OTHER_DANCE};
-
-
 td_state_t cur_dance (qk_tap_dance_state_t *state){
  if(state -> count == 1){
    if (state -> interrupted || !state -> pressed) return TD_SINGLE_TAP;
@@ -239,8 +257,20 @@ void x_finished (qk_tap_dance_state_t *state, void *user_data){
    case TD_SINGLE_HOLD: register_code16(A(KC_LCTL)); break;
    case TD_DOUBLE_TAP:  register_code16(KC_E); break;
       case TD_DOUBLE_HOLD: register_code16(A(KC_LCTL));
-//   case TD_DOUBLE_SINGLE_TAP: register_code(KC_E); unregister_code(KC_E); register_code(KC_E);
+
    case TD_NONE: unregister_code16(KC_LALT);
+  }
+//    xtap_state.state = TD_NONE;
+}
+
+void x_reset (qk_tap_dance_state_t *state, void *user_data){
+  switch (xtap_state.state){
+   case TD_SINGLE_TAP:  unregister_code16(KC_B); break;
+   case TD_SINGLE_HOLD: unregister_code16(A(KC_LCTL)); break;
+   case TD_DOUBLE_TAP:  unregister_code16(KC_E); break;
+      case TD_DOUBLE_HOLD: unregister_code16(A(KC_LCTL));
+          
+      case TD_NONE: unregister_code16(KC_LALT);
   }
     xtap_state.state = TD_NONE;
 }
@@ -264,32 +294,35 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_M);
     unregister_code16(KC_T);
     unregister_code16(KC_D);
+    unregister_code16(KC_1);
+    unregister_code16(KC_2);
+    unregister_code16(KC_3);
 };
 
 
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-//    [TD_BE] = ACTION_TAP_DANCE_DOUBLE(KC_B, KC_E),
     [TD_P50] = ACTION_TAP_DANCE_DOUBLE(KC_P5, KC_P0),
     [TD_LV] = ACTION_TAP_DANCE_DOUBLE(KC_L, KC_V),
     [TD_ZX] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_Z),
     [CT_731] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
     [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
     [CT_NUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, two_eight, dance_cln_reset),
-    [TD_BEA] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
+    [TD_BEA] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, x_reset),
     [CT_F679] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_function, dance_cln_reset),
-    [CT_GUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, g_u_m, dance_cln_reset)
+    [CT_GUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, g_u_m, dance_cln_reset),
+    [CT_123] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_number, dance_cln_reset)
 };
 
-enum layers { _BASE = 0, _FN1, _RESERVED1, _RESERVED2, _BOTTOM};
+enum layers { _BASE = 0, _FN1, _RESERVED1, _RESERVED2};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_numpad_6x4(
-        TG(_FN1),       TG(_RESERVED1),  TG(_RESERVED2), TG(_BOTTOM),
-        KC_A,           KC_PDOT,         KC_TAB,         KC_Q,
-        KC_ESC,         KC_P8,           KC_HOME,
-        KC_P4,          TD(TD_P50),      KC_P6,          KC_LEAD,
-        TD(CT_731),     KC_P2,           KC_P9,
+        TG(_FN1),       TG(_RESERVED1),  TG(_RESERVED2), KC_L,
+        KC_A,           KC_S,            KC_TAB,         KC_Q,
+        TD(CT_123),     TD(CT_GUM),      KC_Y,
+        KC_ESC,         TD(TD_P50),      TD(TD_ZX),      KC_LALT,
+        TD(CT_731),     TD(CT_NUM),      KC_P9,
         KC_LEAD,                         KC_LSFT,        KC_LCTL),
 
     [_FN1] = LAYOUT_numpad_6x4(
@@ -302,27 +335,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
     [_RESERVED1] = LAYOUT_numpad_6x4(
         KC_PENT,     TO(_BASE),  KC_HOME,        KC_END,
-        KC_F10,      KC_F11,     KC_F12,         KC_TRNS,
+        KC_F10,      KC_F11,     KC_F12,         KC_ESC,
         KC_F7,       KC_F8,      KC_F9,
         KC_F4,       KC_F5,      KC_F6,          KC_TRNS,
         KC_F1,       KC_F2,      KC_F3,
         KC_LGUI,                 KC_TRNS,        KC_TRNS),
 
     [_RESERVED2] = LAYOUT_numpad_6x4(
-        KC_I,       KC_LGUI,     TO(_BASE),     TG(_BOTTOM),
-        KC_1,       KC_2,        KC_3,          KC_TRNS,
+        KC_I,       KC_LGUI,     TO(_BASE),     TD(TD_LV),
+        TD(CT_123), KC_C,        KC_TAB,        KC_ESC,
         KC_Q,       KC_M,        KC_A,
         KC_G,       KC_Y,        KC_R,          KC_TRNS,
         KC_S,       KC_X,        KC_Z,
         KC_LGUI,                 KC_TRNS,       KC_TRNS),
     
-    [_BOTTOM] = LAYOUT_numpad_6x4(
-         KC_N,      KC_LGUI,     TO(_BASE),     TG(_RESERVED2),
-         KC_L,      KC_J,        KC_TRNS,       KC_TRNS,
-         KC_F,      SGUI(KC_Z),        KC_F9,
-         KC_E,      KC_ENT,      KC_K,          KC_TRNS,
-         KC_D,      KC_H,        KC_C,
-         KC_LGUI,                KC_TRNS,       KC_TRNS)
+
 };
 
 
