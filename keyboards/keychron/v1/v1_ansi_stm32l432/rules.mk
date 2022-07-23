@@ -24,6 +24,11 @@ RGB_MATRIX_DRIVER = CKLED2001
 RAW_ENABLE = yes
 LTO_ENABLE = yes
 
+
+# my_branch customized 2022/7/2
+#VIA_ENABLE = no
+TAP_DANCE_ENABLE = yes
+LEADER_ENABLE = yes
 # Enter lower-power sleep mode when on the ChibiOS idle thread
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
 

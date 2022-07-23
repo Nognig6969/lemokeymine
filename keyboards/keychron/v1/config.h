@@ -54,6 +54,31 @@
 #define CONSTANT_CURRENT_STEP \
     { 0xA0, 0xA0, 0x48, 0xA0, 0xA0, 0x48, 0xA0, 0xA0, 0x48, 0xA0, 0xA0, 0x48 }
 
+
+/*tapping and leader key 2022/7/23*/
+#define TAPPING_TERM 200
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT  400
+
+//wheel setting 2022/7/23
+// Delay between pressing wheel key and wheel movement)
+#undef  MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY 10
+
+// time Between wheel movements
+#undef  MOUSEKEY_WHEEL_INTERVAL
+#define MOUSEKEY_WHEEL_INTERVAL 100
+
+// max number of scroll steps Per scroll action
+#undef  MOUSEKEY_WHEEL_MAX_SPEED
+#define MOUSEKEY_WHEEL_MAX_SPEED 8
+
+// time until max scroll speed is Reached
+#undef  MOUSEKEY_WHEEL_TIME_TO_MAX
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 40
+
+
+
 /* NKRO */
 #define FORCE_NKRO
 
