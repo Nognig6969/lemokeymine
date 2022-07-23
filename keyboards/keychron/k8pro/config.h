@@ -20,6 +20,8 @@
 #define VENDOR_ID       0x3434
 #define MANUFACTURER    Keychron
 #define PRODUCT         Keychron K8PRO
+#define PRODUCT_ID 0x0280
+#define DEVICE_VER 0x0100
 
 /* key matrix size */
 //#define MATRIX_ROWS 6
