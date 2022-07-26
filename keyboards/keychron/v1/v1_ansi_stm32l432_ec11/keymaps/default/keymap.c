@@ -79,19 +79,19 @@ void matrix_scan_user(void) {
 
     /*set layer indicator 2022/7/32*/
     uint8_t layer = biton32(layer_state);
-//gray, darkturquoise, fireblick, forestgreen
+//fireblick, spring_green, slate_blue, orange_red
     switch (layer){
         case LAYER_1:
-            rgb_matrix_set_color_all(0x80, 0x80, 0x80);
+            rgb_matrix_set_color_all(0xB2, 0x22, 0x22);
             break;
         case LAYER_2:
-            rgb_matrix_set_color_all(0x00, 0xCE, 0xD1);
+            rgb_matrix_set_color_all(0x00, 0xFF, 0x7F);
             break;
         case LAYER_3:
-            rgb_matrix_set_color_all(0xb2, 0x22, 0x22);
+            rgb_matrix_set_color_all(0x6A, 0x5A, 0xCD);
             break;
         case LAYER_4:
-            rgb_matrix_set_color_all(0x22, 0x88, 0x22);
+            rgb_matrix_set_color_all(0xFF, 0x45, 0x00);
             break;
     }
 };
@@ -334,8 +334,8 @@ static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_ansi_82(
-        TG(LAYER_2),         KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    KC_MUTE,
-        KC_ESC,     TD(TD_1),TD(TD_2), TD(TD_3), TD(TD_4), TD(TD_5), TD(TD_6), TD(TD_7), TD(TD_8), TD(TD_9), TD(TD_10),TD(TD_11),TD(TD_12),KC_BSPC,             KC_WH_U,
+        TG(LAYER_2),         KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    OSL(LAYER_$),
+        KC_ESC,     KC_1,    KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,             KC_WH_U,
         KC_TAB,     KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,             KC_WH_D,
         KC_LCTL,    KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,              KC_GRV,
         KC_LSFT,             KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,
@@ -368,10 +368,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [MAC_FN]   = {ENCODER_CCW_CW(RGB_VAI, RGB_VAD)},
-    [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [WIN_FN]   = {ENCODER_CCW_CW(RGB_VAI, RGB_VAD)},
+    [LAYER_1] = {ENCODER_CCW_CW(KC_WH_D, KC_WH_U)},
+    [LAYER_2]   = {ENCODER_CCW_CW(KC_HOME, KC_END)},
+    [LAYER_3] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_4]   = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 };
 #endif
 
