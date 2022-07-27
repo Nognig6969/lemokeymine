@@ -217,7 +217,6 @@ typedef enum{
 typedef struct { bool is_press_action;
   td_state_t  state; } td_tap_t;
 
-//enum{ TD_BEA = 0, SOME_OTHER_DANCE};
 
 
 td_state_t cur_dance (qk_tap_dance_state_t *state){
@@ -330,11 +329,11 @@ key_combination_t key_comb_list[2] = {
 #define KC_TASK KC_TASK_VIEW
 #define KC_FLXP KC_FILE_EXPLORER
 
-static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
+//static uint8_t mac_keycode[4] = { KC_LOPT, KC_ROPT, KC_LCMD, KC_RCMD };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_ansi_82(
-        TG(LAYER_2),         KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    OSL(LAYER_$),
+        TG(LAYER_2),         KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_UNDS,  KC_PLUS, KC_QUES,    OSL(LAYER_4),
         KC_ESC,     KC_1,    KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,             KC_WH_U,
         KC_TAB,     KC_Q,    KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,             KC_WH_D,
         KC_LCTL,    KC_A,    KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,              KC_GRV,
@@ -366,17 +365,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,  KC_TRNS,  KC_TRNS,                                   KC_TRNS,                                KC_TRNS,  SGUI(KC_4),KC_TRNS, KC_MPRV,  KC_VOLD,  KC_MNXT)
 };
 
+
+
+
+
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [LAYER_1] = {ENCODER_CCW_CW(KC_WH_D, KC_WH_U)},
-    [LAYER_2]   = {ENCODER_CCW_CW(KC_HOME, KC_END)},
-    [LAYER_3] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [LAYER_4]   = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_1] = {ENCODER_CCW_CW(SGUI(KC_Z), G(KC_Z))},
+    [LAYER_2] = {ENCODER_CCW_CW(KC_WH_D, KC_WH_U)},
+    [LAYER_3] = {ENCODER_CCW_CW(KC_WH_D, KC_WH_U)},
+    [LAYER_4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 };
+
+/* Rotary encoder settings */
+bool encoder_update_user(uint8_t index, bool clockwise) {
+ if (index == 0) {
+   if (clockwise) {
+        tap_code16(SGUI(KC_Z));
+    } else {
+        tap_code16(G(KC_Z));
+    }
+ }
+   return false;
+}
 #endif
 
+/*
 bool dip_switch_update_user(uint8_t index, bool active) {
-    /* Send default layer state to host */
+    // Send default layer state to host
     system_switch_state_report(index, active);
     return true;
 }
@@ -423,3 +439,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;   // Process all other keycodes normally
     }
 }
+*/
