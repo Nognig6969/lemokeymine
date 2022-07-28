@@ -302,7 +302,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [CT_GUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, g_u_m, dance_cln_reset)
 };
 
-
+/*
 enum custom_keycodes {
     KC_MISSION_CONTROL = SAFE_RANGE,
     KC_LAUNCHPAD,
@@ -313,7 +313,7 @@ enum custom_keycodes {
     KC_TASK_VIEW,
     KC_FILE_EXPLORER
 };
-
+*/
 typedef struct PACKED {
     uint8_t len;
     uint8_t keycode[2];
@@ -354,7 +354,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,       KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,               KC_TRNS,
         KC_LCTL,  KC_A,     KC_S,     KC_D,     TD(CT_NUM), KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,                KC_HOME,
         KC_LSFT,            KC_Z,     KC_X,     KC_C,       KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,  KC_UP,
-        TD(CT_731),  KC_TRNS,  KC_TRNS,                                  KC_SPC,                                 KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_LEFT,  KC_DOWN,     KC_RGHT),
+        TD(CT_731),  KC_TRNS,  KC_TRNS,                               KC_SPC,                                 KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_LEFT,  KC_DOWN,     KC_RGHT),
 
     [LAYER_4] = LAYOUT_ansi_82(
         KC_TRNS,            KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
@@ -365,20 +365,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,  KC_TRNS,  KC_TRNS,                                   KC_TRNS,                                KC_TRNS,  SGUI(KC_4),KC_TRNS, KC_MPRV,  KC_VOLD,  KC_MNXT)
 };
 
+enum custom_keycodes{
+      UNDOZ = SAFE_RANGE, //SAFE_RANGEは開始値を設定しているので始めにだけに必要
+//SAFE_RANGEとすることでほかのキーのキーコードと衝突しない値で宣言
+      REDOZ
+     };
 
-
-
+bool process_record_user (uint16_t keycode, keyrecord_t *record){
+ switch (keycode ) {
+  case REDOZ:
+   if (record -> event.pressed){
+      SEND_STRING(SS_LGUI("Z"));
+      return false;
+    }
+  case UNDOZ:
+   if (record -> event.pressed) {
+       SEND_STRING(SS_LGUI(SS_LSFT("Z")));
+     return false;
+  }
+return false; //return false;  default:  return true; という書き方とどちらか
+     default: return true;
+         //break;
+ }
+};
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [LAYER_1] = {ENCODER_CCW_CW(SGUI(KC_Z), G(KC_Z))},
+    [LAYER_1] = {ENCODER_CCW_CW(REDOZ, UNDOZ)},
     [LAYER_2] = {ENCODER_CCW_CW(KC_WH_D, KC_WH_U)},
     [LAYER_3] = {ENCODER_CCW_CW(KC_WH_D, KC_WH_U)},
     [LAYER_4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
 };
 
 /* Rotary encoder settings */
-bool encoder_update_user(uint8_t index, bool clockwise) {
+/*bool encoder_update_user(uint8_t index, bool clockwise) {
  if (index == 0) {
    if (clockwise) {
         tap_code16(SGUI(KC_Z));
@@ -389,6 +409,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
    return false;
 }
 #endif
+*/
 
 /*
 bool dip_switch_update_user(uint8_t index, bool active) {
