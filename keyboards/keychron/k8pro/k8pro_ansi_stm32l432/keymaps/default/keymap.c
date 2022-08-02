@@ -17,6 +17,24 @@
 #include QMK_KEYBOARD_H
 #include "test.h"
 
+
+void matrix_init_kb(void){
+    debug_enable = true;
+    debug_matrix = true;
+    debug_mouse  = true;
+}
+
+#ifdef CONSOLE_ENABLE
+#include <print.h>
+#endif
+bool process_record_user (uint16_t keycode, keyrecord_t *record){
+#ifdef CONSOLE_ENABLE
+     uprintf("KL:kc:0x%04X, col: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n" ,
+             keycode, record -> event.key.col, record -> event.key.row, record -> event.pressed, record -> event.time, record -> tap. interrupted, record -> tap.count);
+#endif
+    return true;
+}
+
 enum layers{
     MAC_BASE,
     MAC_FN,
