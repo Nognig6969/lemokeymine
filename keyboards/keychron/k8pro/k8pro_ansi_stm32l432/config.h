@@ -17,8 +17,8 @@
 #pragma once
 
 /* USB Device descriptor parameter */
-//#define PRODUCT_ID 0x0120
-//#define DEVICE_VER 0x0104
+#define PRODUCT_ID 0x0280
+#define DEVICE_VER 0x0100
 
 /* key matrix pins */
 #define MATRIX_ROW_PINS \

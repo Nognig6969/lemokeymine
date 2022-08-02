@@ -17,7 +17,7 @@
 #include QMK_KEYBOARD_H
 #include "test.h"
 
-
+/*
 void matrix_init_kb(void){
     debug_enable = true;
     debug_matrix = true;
@@ -34,7 +34,7 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record){
 #endif
     return true;
 }
-
+*/
 enum layers{
     MAC_BASE,
     MAC_FN,
