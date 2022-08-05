@@ -347,8 +347,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_2] = LAYOUT_ansi_82(
         TO(LAYER_3),          KC_F1,      KC_F2,     KC_F3,      KC_F4,       KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_D,    KC_C,    KC_W,
         OSL(LAYER_1),KC_F12,  TD(CT_NUM), TD(TD_P50),TD(CT_731), G(KC_K),     KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_Q,
-        KC_LEAD,     G(KC_N), KC_SLSH,    KC_ESC,    ALT_T(KC_R),TD(CT_F679), KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_F,
-        KC_LCTL,     KC_F1,   KC_WH_D,    KC_WH_U,   TD(TD_BEA), G(KC_0),     KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,          KC_TAB,
+        KC_LEAD,     G(KC_N), KC_WH_D,    KC_ESC,    ALT_T(KC_R),TD(CT_F679), KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,          KC_F,
+        KC_LCTL,     KC_F1,   KC_SLSH,    KC_WH_U,   TD(TD_BEA), G(KC_0),     KC_TRNS,   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,          KC_TAB,
         KC_TRNS,              TD(CT_GUM), TD(TD_KO), TD(TD_ZX),  TD(TD_LV),   G(KC_E),   KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,
         KC_SPC,      KC_TRNS, KC_TRNS,                                        KC_TRNS,                                 KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS),
 
