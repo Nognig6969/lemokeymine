@@ -158,7 +158,79 @@ void keyboard_post_init_user(void) {
 #    endif
 }
 
+enum layers{
+    LAYER_1,
+    LAYER_2,
+    LAYER_3,
+    LAYER_4
+};
+
+// add leader key 2022/8/6
+LEADER_EXTERNS();
 void matrix_scan_user(void) {
+    LEADER_DICTIONARY() {
+      leading = false;
+      leader_end();
+        SEQ_ONE_KEY(KC_SLSH){
+            register_code(KC_LGUI);
+            register_code(KC_D);
+            unregister_code(KC_D);
+            unregister_code(KC_LGUI);
+            
+    }
+        SEQ_TWO_KEYS(KC_SLSH, KC_SLSH) {
+            register_code(KC_LGUI);
+             register_code(KC_T);
+             unregister_code(KC_T);
+           unregister_code(KC_LGUI);
+
+        }
+
+        
+        SEQ_ONE_KEY(KC_ESC){
+            register_code(KC_LGUI);
+            register_code(KC_Z);
+            unregister_code(KC_Z);
+            unregister_code(KC_LGUI);
+    }
+        SEQ_TWO_KEYS(KC_ESC, KC_ESC) {
+          register_code(KC_LGUI);
+            register_code(KC_LSFT);
+                  register_code(KC_Z);
+                unregister_code(KC_Z);
+            unregister_code(KC_LSFT);
+          unregister_code(KC_LGUI);
+        }
+        
+        SEQ_ONE_KEY(KC_SPC){
+            register_code(KC_LGUI);
+            register_code(KC_S);
+            unregister_code(KC_S);
+            unregister_code(KC_LGUI);
+    }
+    };
+
+    /*set layer indicator 2022/8/6 */
+    uint8_t layer = biton32(layer_state);
+//gray, darkturquoise, fireblick, forestgreen
+    switch (layer){
+        case LAYER_1:
+            rgb_matrix_set_color_all(0x80, 0x80, 0x80);
+            break;
+        case LAYER_2:
+            rgb_matrix_set_color_all(0x00, 0xCE, 0xD1);
+            break;
+        case LAYER_3:
+            rgb_matrix_set_color_all(0xb2, 0x22, 0x22);
+            break;
+        case LAYER_4:
+            rgb_matrix_set_color_all(0x22, 0x88, 0x22);
+            break;
+    }
+    
+    
+    
+    
     if (power_on_indicator_timer_buffer) {
         if (sync_timer_elapsed32(power_on_indicator_timer_buffer) > POWER_ON_LED_DURATION) {
             power_on_indicator_timer_buffer = 0;

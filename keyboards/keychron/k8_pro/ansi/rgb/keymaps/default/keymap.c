@@ -23,7 +23,8 @@ enum layers{
     LAYER_4
 };
 
-LEADER_EXTERNS();
+//LEADER_EXTERNS();
+/*
 void matrix_scan_user(void) {
     
     LEADER_DICTIONARY() {
@@ -68,7 +69,7 @@ void matrix_scan_user(void) {
     }
     };
 
-    /*set layer indicator 2022/8/6 */
+    //set layer indicator 2022/8/6
     uint8_t layer = biton32(layer_state);
 //gray, darkturquoise, fireblick, forestgreen
     switch (layer){
@@ -86,7 +87,7 @@ void matrix_scan_user(void) {
             break;
     }
 };
-
+*/
 
 //tap dance 2022/7/2 my branch
 enum{

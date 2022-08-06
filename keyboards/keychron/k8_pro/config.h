@@ -21,6 +21,11 @@
 #define MANUFACTURER Keychron
 #define PRODUCT Keychron K8 Pro
 
+
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT  300
+
+
 /* key matrix size */
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 17
