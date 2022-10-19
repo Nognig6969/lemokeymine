@@ -61,19 +61,31 @@ static inline uint8_t readMatrixPin(pin_t pin) {
     }
 }
 
+// At 3.6V input three nops (37.5ns) should be enough for all signals
+#define small_delay() __asm__ __volatile__ ("nop;nop;nop;\n\t":::"memory")
+#define compiler_barrier() __asm__ __volatile__ ("":::"memory")
+
 static void shiftOut(uint8_t dataOut) {
-    for (uint8_t i = 0; i < 8; i++) {
-        if (dataOut & 0x1) {
-            setPinOutput_writeHigh(DATA_PIN);
-        } else {
-            setPinOutput_writeLow(DATA_PIN);
+    ATOMIC_BLOCK_FORCEON {
+        for (uint8_t i = 0; i < 8; i++) {
+            compiler_barrier();
+            if (dataOut & 0x1) {
+                writePinHigh(DATA_PIN);
+            } else {
+                writePinLow(DATA_PIN);
+            }
+            dataOut = dataOut >> 1;
+            compiler_barrier();
+            writePinHigh(CLOCK_PIN);
+            small_delay();
+            writePinLow(CLOCK_PIN);
         }
-        dataOut = dataOut >> 1;
-        setPinOutput_writeHigh(CLOCK_PIN);
-        setPinOutput_writeLow(CLOCK_PIN);
+        compiler_barrier();
+        writePinHigh(LATCH_PIN);
+        small_delay();
+        writePinLow(LATCH_PIN);
+        compiler_barrier();
     }
-    setPinOutput_writeHigh(LATCH_PIN);
-    setPinOutput_writeLow(LATCH_PIN);
 }
 
 static void shiftout_single(uint8_t data) {
@@ -141,6 +153,9 @@ static void unselect_cols(void) {
 }
 
 static void matrix_init_pins(void) {
+    setPinOutput(DATA_PIN);
+    setPinOutput(CLOCK_PIN);
+    setPinOutput(LATCH_PIN);
     unselect_cols();
     for (uint8_t x = 0; x < MATRIX_ROWS; x++) {
         if (row_pins[x] != NO_PIN) {
