@@ -171,6 +171,9 @@ static void matrix_read_rows_on_col(matrix_row_t current_matrix[], uint8_t curre
     if (!select_col(current_col)) { // select col
         return;                     // skip NO_PIN col
     }
+    if (col_pins[current_col] == NO_PIN) {
+        wait_us(2); // the shift register needs a longer delay
+    }
     matrix_output_select_delay();
 
     // For each row...
@@ -193,6 +196,7 @@ void matrix_init_custom(void) {
     matrix_init_pins();
 }
 
+__attribute__((flatten))
 bool matrix_scan_custom(matrix_row_t current_matrix[]) {
     matrix_row_t curr_matrix[MATRIX_ROWS] = {0};
 
