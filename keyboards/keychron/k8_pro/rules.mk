@@ -7,6 +7,7 @@ BOOTLOADER = stm32-dfu
 # Build Options
 #   change yes to no to disable
 #
+UNICODEMAP_ENABLE = yes		# Enable Unicode support (including emojis)
 BOOTMAGIC_ENABLE = yes      # Enable boot magic
 MOUSEKEY_ENABLE = yes       # Mouse keys
 EXTRAKEY_ENABLE = yes       # Audio control and System control
