@@ -16,10 +16,6 @@
 
 #pragma once
 
-/* key matrix size */
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 16
-
 /* Key matrix pins */
 #define MATRIX_ROW_PINS \
     { B5, B4, B3, A15, A14, A13 }
@@ -30,7 +26,7 @@
 #define DIODE_DIRECTION ROW2COL
 
 /* Use SPI to drive 74HC595 shift register */
-#define DRIVE_SHRIFT_REGISTER_WITH_SPI
+// #define DRIVE_SHRIFT_REGISTER_WITH_SPI
 
 /* Turn off effects when suspended */
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
@@ -100,5 +96,3 @@
 /* Emulated EEPROM configuration */
 #define FEE_DENSITY_BYTES FEE_PAGE_SIZE
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
-
-//#define NO_PRINT

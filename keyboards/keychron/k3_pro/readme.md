@@ -1,12 +1,10 @@
 # Keychron K3 Pro
 
-![Keychron K3 Pro](https://cdn.shopify.com/s/files/1/0059/0630/1017/t/5/assets/keychronk3proqmkvialowprofilewirelessmechanicalkeyboardwithanultraslimbodyandhotswappable-1665930065228.jpg?v=1665930068)
-
-A customizable 84 keys TKL keyboard.
+A customizable 75% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K3 Pro
-* Hardware Availability: [Keychron K3 Pro QMK/VIA Wireless Custom Mechanical Keyboard](https://www.keychron.com/products/keychron-k3-pro-qmk-via-wireless-custom-mechanical-keyboard)
+* Hardware Availability: [Keychron](https://github.com/keychron)
 
 Make example for this keyboard (after setting up your build environment):
 
