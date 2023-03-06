@@ -48,8 +48,6 @@
 #    define USB_POWER_CONNECTED_LEVEL 0
 
 #    define BAT_LOW_LED_PIN_STATE 1
-// #    define BAT_LOW_LED_PIN NO_PIN
-// #    define BAT_LOW_LED_PIN_ON_STATE 1
 
 #    define HOST_DEVICES_COUNT 3
 
