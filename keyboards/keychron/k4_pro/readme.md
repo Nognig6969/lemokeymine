@@ -1,12 +1,10 @@
 # Keychron K4 Pro
 
-![Keychron K4 Pro](https://cdn.shopify.com/s/files/1/0059/0630/1017/t/5/assets/keychron-k4-pro-wireless-custom-mechanical-keyboard1-1672887299925.jpg?v=1672887302)
-
 A customizable 100 keys keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K4 Pro
-* Hardware Availability: [Keychron K4 Pro QMK/VIA Wireless Mechanical Keyboard](https://www.keychron.com/products/keychron-k4-pro-qmk-via-wireless-mechanical-keyboard)
+* Hardware Availability: [Keychron](https://github.com/keychron)
 
 Make example for this keyboard (after setting up your build environment):
 
