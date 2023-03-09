@@ -88,7 +88,14 @@ enum {
     CKBT51_EVT_BATTERY       = 0xB5,
 };
 
-enum { CKBT51_CONNECTED = 0x20, CKBT51_DISCOVERABLE = 0x21, CKBT51_RECONNECTING = 0x22, CKBT51_DISCONNECTED = 0x23, CKBT51_PINCODE_ENTRY = 0x24, CKBT51_EXIT_PINCODE_ENTRY = 0x25 };
+enum {
+    CKBT51_CONNECTED = 0x20,
+    CKBT51_DISCOVERABLE = 0x21,
+    CKBT51_RECONNECTING = 0x22,
+    CKBT51_DISCONNECTED = 0x23,
+    CKBT51_PINCODE_ENTRY = 0x24,
+    CKBT51_EXIT_PINCODE_ENTRY = 0x25
+};
 
 enum {
     ACK_SUCCESS = 0x00,
@@ -100,7 +107,18 @@ enum {
 static uint8_t payload[PACKET_MAX_LEN];
 static uint8_t reg_offset = 0xFF;
 
-bluetooth_transport_t bluetooth_transport = {ckbt51_init, ckbt51_connect, ckbt51_become_discoverable, ckbt51_disconnect, ckbt51_send_keyboard, ckbt51_send_nkro, ckbt51_send_consumer, ckbt51_send_system, ckbt51_send_mouse, ckbt51_task};
+bluetooth_transport_t bluetooth_transport = {
+    ckbt51_init,
+    ckbt51_connect,
+    ckbt51_become_discoverable,
+    ckbt51_disconnect,
+    ckbt51_send_keyboard,
+    ckbt51_send_nkro,
+    ckbt51_send_consumer,
+    ckbt51_send_system,
+    ckbt51_send_mouse,
+    ckbt51_task
+};
 
 void ckbt51_init(bool wakeup_from_low_power_mode) {
 #if (HAL_USE_SERIAL == TRUE)
