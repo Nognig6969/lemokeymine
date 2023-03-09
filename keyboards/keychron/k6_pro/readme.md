@@ -1,12 +1,10 @@
 # Keychron K6 Pro
 
-![Keychron K6 Pro](https://cdn.shopify.com/s/files/1/0059/0630/1017/t/5/assets/keychronk6pr0qmkviawirelesscustommechanicalkeyboard-1659094228146.jpg?v=1659094230)
-
 A customizable 68 keys TKL keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K6 Pro
-* Hardware Availability: [Keychron K6 Pro QMK/VIA Wireless Mechanical Keyboard](https://www.keychron.com/products/keychron-k6-pro-qmk-via-wireless-custom-mechanical-keyboard)
+* Hardware Availability: [Keychron](https://github.com/keychron)
 
 Make example for this keyboard (after setting up your build environment):
 

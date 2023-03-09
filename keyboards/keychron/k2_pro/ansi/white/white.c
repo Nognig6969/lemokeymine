@@ -19,7 +19,7 @@
 // clang-format off
 #ifdef LED_MATRIX_ENABLE
 const ckled2001_led g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
-/* Refer to IS31 manual for these locations
+/* Refer to CKLED2001 manual for these locations
  *   driver
  *   |  LED address
  *   |  | */
@@ -111,12 +111,12 @@ const ckled2001_led g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
     {0, F_16},
     {0, F_15},
     {0, F_14},
- // {0, F_13},
- // {0, F_12},
- // {0, F_11},
+// {0, F_13},
+// {0, F_12},
+// {0, F_11},
     {0, F_10},
- // {0, F_9},
- // {0, F_8},
+// {0, F_9},
+// {0, F_8},
     {0, F_7},
     {0, F_6},
     {0, F_5},
@@ -150,7 +150,7 @@ led_config_t g_led_config = {
     {
         // RGB LED Index to Flag
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    1,
+        1, 8, 8, 8, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1,    1,
         1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,
         8, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,    1,    1,
         1,    4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 1, 1,    1,

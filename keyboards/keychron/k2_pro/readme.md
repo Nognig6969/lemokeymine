@@ -1,6 +1,6 @@
 # Keychron K2 Pro
 
-A customizable 84 keys TKL keyboard.
+A customizable 84 keys keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K2 Pro

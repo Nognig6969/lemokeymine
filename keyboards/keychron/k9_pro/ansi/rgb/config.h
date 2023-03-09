@@ -28,7 +28,7 @@
 #    define I2C1_TIMINGR_SCLDEL 3U
 #    define I2C1_TIMINGR_SDADEL 0U
 #    define I2C1_TIMINGR_SCLH 15U
-#    define I2C1_TIMINGR_SCLL 30U
+#    define I2C1_TIMINGR_SCLL 51U
 
 /* Set to infinite, which is use in USB mode by default */
 #    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
