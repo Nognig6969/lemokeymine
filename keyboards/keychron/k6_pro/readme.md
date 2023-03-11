@@ -1,10 +1,10 @@
 # Keychron K6 Pro
 
-A customizable 68 keys TKL keyboard.
+A customizable 65% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K6 Pro
-* Hardware Availability: [Keychron](https://github.com/keychron)
+* Hardware Availability: [Keychron K6 Pro](https://drive.google.com/file/d/1X1Qk--x6v6I8Ds9umPF1wliTm9Mnd_RH/view?usp=share_link)
 
 Make example for this keyboard (after setting up your build environment):
 

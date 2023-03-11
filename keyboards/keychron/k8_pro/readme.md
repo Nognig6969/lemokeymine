@@ -1,10 +1,10 @@
 # Keychron K8 Pro
 
-A customizable 87 keys TKL keyboard.
+A customizable 80% TKL keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K8 Pro
-* Hardware Availability: [Keychron](https://github.com/keychron)
+* Hardware Availability: [Keychron K8 Pro](https://drive.google.com/file/d/1UWZKX_vN2O5VxjHdVP0XIJjG4KnvBpjo/view?usp=share_link)
 
 Make example for this keyboard (after setting up your build environment):
 

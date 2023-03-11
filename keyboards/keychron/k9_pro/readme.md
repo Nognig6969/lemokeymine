@@ -4,7 +4,7 @@ A customizable 60% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K9 Pro
-* Hardware Availability: [Keychron](https://www.keychron.com/)
+* Hardware Availability: [Keychron K9 Pro](https://www.keychron.com/)
 
 Make example for this keyboard (after setting up your build environment):
 

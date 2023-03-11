@@ -4,7 +4,7 @@ A customizable 80% TKL keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron Q3 Pro
-* Hardware Availability: [Keychron](https://github.com/keychron)
+* Hardware Availability: [Keychron Q3 Pro](https://github.com/keychron)
 
 Make example for this keyboard (after setting up your build environment):
 

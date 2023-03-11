@@ -4,7 +4,7 @@ A customizable 65% low profile switch keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K7 Pro
-* Hardware Availability: [Keychron](https://github.com/keychron)
+* Hardware Availability: [Keychron](https://drive.google.com/file/d/1BSy1l3bs-EW-TgPWDY3qpPCSWVV3nqdQ/view?usp=share_link)
 
 Make example for this keyboard (after setting up your build environment):
 

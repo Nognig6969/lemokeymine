@@ -1,10 +1,10 @@
 # Keychron K10 Pro
 
-A customizable 108 keys keyboard.
+A customizable 100% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K10 Pro
-* Hardware Availability: [Keychron](https://github.com/keychron)
+* Hardware Availability: [Keychron K10 Pro](https://drive.google.com/file/d/13vC9UEIpxM1wMguPAX05lKisuQfUWtEf/view?usp=share_link)
 
 Make example for this keyboard (after setting up your build environment):
 
