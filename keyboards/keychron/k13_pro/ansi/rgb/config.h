@@ -41,7 +41,7 @@
 /* Turn off backllit if brightness value is low */
 #    define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 
-#    define LOW_BAT_IND_INDEX 79
+#    define LOW_BAT_IND_INDEX 82
 
 // RGB Matrix Animation modes. Explicitly enabled
 // For full list of effects, see:
