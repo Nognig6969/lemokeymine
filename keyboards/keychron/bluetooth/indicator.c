@@ -403,7 +403,7 @@ void indicator_battery_low_backlit_enable(bool enable) {
         }
         /* Indicating at first time or after the interval */
         if ((rtc_time == 0 || t - rtc_time > LOW_BAT_LED_TRIG_INTERVAL) && bat_low_ind_state == 0) {
-            bat_low_backlit_indicator = enable ? (sync_timer_read32() == 0 ? 1 : sync_timer_read32()) : 0;
+            bat_low_backlit_indicator = enable ? (timer_read32() == 0 ? 1 : timer_read32()) : 0;
             rtc_time                  = rtc_timer_read_ms();
             bat_low_ind_state         = 1;
 
