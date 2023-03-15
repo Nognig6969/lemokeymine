@@ -1,10 +1,12 @@
 # Keychron K2 Pro
 
+![Keychron K2 Pro](https://drive.google.com/file/d/1AKk8VqiGtesZ1FBeFjVTBqW81kA8C3rD/view?usp=share_link)
+
 A customizable 84 keys keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K2 Pro
-* Hardware Availability: [Keychron K2 Pro](https://drive.google.com/file/d/1AKk8VqiGtesZ1FBeFjVTBqW81kA8C3rD/view?usp=share_link)
+* Hardware Availability: [Keychron K2 Pro QMK/VIA Wireless Mechanical Keyboard](https://www.keychron.com/products/keychron-k2-pro-qmk-via-wireless-mechanical-keyboard)
 
 Make example for this keyboard (after setting up your build environment):
 
