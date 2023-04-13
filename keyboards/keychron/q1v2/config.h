@@ -47,6 +47,9 @@
 #define WEAR_LEVELING_LOGICAL_SIZE 2048
 #define WEAR_LEVELING_BACKING_SIZE (WEAR_LEVELING_LOGICAL_SIZE * 2)
 
+/* Use old default behavior of mod-taps for upcomming action_tapping.c changes */
+#define HOLD_ON_OTHER_KEY_PRESS
+
 /* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
 #define PHASE_CHANNEL MSKPHASE_9CHANNEL
 /* Set LED driver current */
