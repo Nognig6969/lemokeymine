@@ -77,7 +77,7 @@ void bat_level_animiation_indicate(void) {
 
     if (animation_state == BAT_LVL_ANI_GROWING || animation_state == BAT_LVL_ANI_BLINK_ON)
         for (uint8_t i = 0; i < cur_percentage / 10; i++)
-            led_matrix_set_value(bat_lvl_led_list[i], 255);
+            led_matrix_set_value(bat_lvl_led_list[i], led_matrix_get_val());
 #endif
 
 #ifdef RGB_MATRIX_ENABLE

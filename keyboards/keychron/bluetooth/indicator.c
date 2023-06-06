@@ -92,9 +92,9 @@ static pin_t host_led_pin_list[HOST_DEVICES_COUNT] = HOST_LED_PIN_LIST;
 #    define LED_NONE_INDICATORS_KB led_matrix_none_indicators_kb
 #    define SET_ALL_LED_OFF() led_matrix_set_value_all(0)
 #    define SET_LED_OFF(idx) led_matrix_set_value(idx, 0)
-#    define SET_LED_ON(idx) led_matrix_set_value(idx, 255)
-#    define SET_LED_BT(idx) led_matrix_set_value(idx, 255)
-#    define SET_LED_LOW_BAT(idx) led_matrix_set_value(idx, 255)
+#    define SET_LED_ON(idx) led_matrix_set_value(idx, led_matrix_get_val())
+#    define SET_LED_BT(idx) led_matrix_set_value(idx, led_matrix_get_val())
+#    define SET_LED_LOW_BAT(idx) led_matrix_set_value(idx, led_matrix_get_val())
 #    define LED_DRIVER_IS_ENABLED led_matrix_is_enabled
 #    define LED_DRIVER_EECONFIG_RELOAD() \
         eeprom_read_block(&led_matrix_eeconfig, EECONFIG_LED_MATRIX, sizeof(led_matrix_eeconfig)); \
