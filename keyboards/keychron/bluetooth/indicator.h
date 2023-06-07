@@ -75,6 +75,10 @@
 #    endif
 #endif
 
+#ifdef LED_MATRIX_ENABLE
+#    define DECIDE_INDICATOR_VAL (led_matrix_eeconfig.val < LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL) ? LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL : led_matrix_eeconfig.val
+#endif
+
 #if BT_HOST_MAX_COUNT > 6
 #    pragma error("HOST_COUNT max value is 6")
 #endif
