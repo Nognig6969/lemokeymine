@@ -62,6 +62,21 @@
           ]
         }
       ]
+    },
+    {
+      "label": "Bluetooth",
+      "content": [
+        {
+          "label": "Buffer",
+          "content": [
+            {
+              "label": "Reconnect Buffer",
+              "type": "toggle",
+              "content": ["id_kc_bluetooth_reconnect_buffer", 0, 1]
+            }
+          ]
+        }
+      ]
     }
   ],
   "customKeycodes": [

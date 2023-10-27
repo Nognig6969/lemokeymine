@@ -23,6 +23,7 @@
 #include "indicator.h"
 #include "transport.h"
 #include "rtc_timer.h"
+#include "bluetooth_ee.h"
 
 extern uint8_t         pairing_indication;
 extern host_driver_t   chibios_driver;
@@ -100,6 +101,8 @@ void bluetooth_init(void) {
 
     lpm_init();
     rtc_timer_init();
+
+    bluetooth_ee_init();
 
 #ifdef BLUETOOTH_NKRO_ENABLE
     keymap_config.raw = eeconfig_read_keymap();
@@ -339,6 +342,16 @@ void bluetooth_send_keyboard(report_keyboard_t *report) {
         }
 
     } else if (bt_state != BLUETOOTH_RESET) {
+#ifndef DISABLE_REPORT_BUFFER
+        /* This will buffer keypress when the keyboard is reconnecting, and send it after connected */
+        if (bluetooth_ee_reconnect_buffer_is_enabled() != 0) {
+            report_buffer_t report_buffer;
+            report_buffer.type = REPORT_TYPE_KB;
+            memcpy(&report_buffer.keyboard, report, sizeof(report_keyboard_t));
+            report_buffer_enqueue(&report_buffer);
+        }
+#endif
+
         bluetooth_connect();
     }
 }
