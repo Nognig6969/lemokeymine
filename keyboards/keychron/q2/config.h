@@ -17,8 +17,10 @@
 #pragma once
 
 /* If PH3 used with a stronger pull resistor then the following definition needs be included */
-// #define MATRIX_UNSELECT_DRIVE_HIGH
-
+ #define MATRIX_UNSELECT_DRIVE_HIGH
+#define RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
+/* Turn off backllit if brightness value is low */
+#define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 /* RGB Matrix Driver Configuration */
 #define DRIVER_COUNT 2
 #define DRIVER_ADDR_1 0b1110111
@@ -35,7 +37,7 @@
 #define PHASE_CHANNEL MSKPHASE_9CHANNEL
 /* Set LED driver current */
 #define CKLED2001_CURRENT_TUNE \
-    { 0xCA, 0xCA, 0x60, 0xCA, 0xCA, 0x60, 0xCA, 0xCA, 0x60, 0xCA, 0xCA, 0x60 }
+     { 0x90, 0x90, 0x85, 0x90, 0x90, 0x85, 0x90, 0x90, 0x85,0x90, 0x90, 0x85 }
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
@@ -58,5 +60,5 @@
 #define RGB_MATRIX_KEYRELEASES
 
 /* Factory test keys */
-#define FN_KEY1 MO(2)
-#define FN_KEY2 MO(3)
+//#define FN_KEY1 MO(2)
+#define FN_KEY2 MO(4)
