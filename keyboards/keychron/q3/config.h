@@ -16,6 +16,9 @@
 
 #pragma once
 
+#define RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
+/* Turn off backllit if brightness value is low */
+#define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 /* RGB Matrix Driver Configuration */
 #define DRIVER_COUNT 2
 #define DRIVER_ADDR_1 0b1110111
@@ -33,7 +36,7 @@
 
 /* Set LED driver current */
 #define CKLED2001_CURRENT_TUNE \
-    { 0x9D, 0x9D, 0x44, 0x9D, 0x9D, 0x44, 0x9D, 0x9D, 0x44, 0x9D, 0x9D, 0x44 }
+    { 0x70, 0x70, 0x60, 0x70, 0x70, 0x60, 0x70, 0x70, 0x60, 0x70, 0x70, 0x60 }
 
 /* DIP switch */
 #define DIP_SWITCH_MATRIX_GRID { { 5, 4 } }
