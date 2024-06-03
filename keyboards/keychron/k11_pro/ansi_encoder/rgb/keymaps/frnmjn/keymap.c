@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 
-#include "keymap_italian.h"
-#include "sendstring_italian.h"
+#include "keymap_italian_mac_ansi.h"
+#include "sendstring_italian_mac_ansi.h"
 #include "alias.h"
 #include "tap_dance.h"
 #include "combo.h"
@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [NOR] = LAYOUT_69_ansi(
         NO,   NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,      NO,      NO,      NO,      NO,
-        NO,   NO,     SW_WIN, SW_TAB, FILE,   NO,             QUOT,   UNDS,   DQT,    AMPR,    PIPE,    NO,      NO,      NO,      NO,
+        NO,   NO,     NO,     SW_TAB, FILE,   NO,             QUOT,   UNDS,   DQT,    AMPR,    PIPE,    NO,      NO,      NO,      NO,
         NO,   HOME,   TD_S,   TD_D,   TD_F,   RUN,            LEFT,   DOWN,   UP,     RIGHT,   END,     NO,      NO,      NO,
         NO,   UNDO,   CUT,    TD_C,   PASTE,  REDO,   NO,     EXLM,   TD_RB,  TD_SB,  TD_CB,   PERC,    NO,      NO,
         NO,   NO,     NO,     NO,             NO,     NO,     DEL,    NO,     NO,     NO,      NO
@@ -44,18 +44,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 // clang-format on
- uint16_t get_autoshift_timeout(uint16_t keycode, keyrecord_t *record) {
-    switch(keycode) {
-        case KC_Q:
-        case KC_A:
-        case KC_Z:
-        case KC_P:
-        case KC_SCLN:
-        case KC_SLSH:
-            return 0 + get_generic_autoshift_timeout();
-        case KC_EQL:
-            return 9999;
-        default:
-            return get_generic_autoshift_timeout();
-    }
-}
+//  uint16_t get_autoshift_timeout(uint16_t keycode, keyrecord_t *record) {
+//     switch(keycode) {
+//         case KC_Q:
+//         case KC_A:
+//         case KC_Z:
+//         case KC_P:
+//         case KC_SCLN:
+//         case KC_SLSH:
+//             return 0 + get_generic_autoshift_timeout();
+//         case KC_EQL:
+//             return 9999;
+//         default:
+//             return get_generic_autoshift_timeout();
+//     }
+// }

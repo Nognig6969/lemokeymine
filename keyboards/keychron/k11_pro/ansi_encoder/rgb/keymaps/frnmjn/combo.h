@@ -10,7 +10,7 @@ enum combos{
   C_WIN_SX,
   C_WIN_DX,
   C_CLEAR,
-  C_CTLCLICK,
+  C_CMDCLICK,
   C_CW_TOGG,
   C_DIAMOND,
 	COMBO_LENGTH
@@ -28,7 +28,7 @@ const uint16_t PROGMEM c_win_dx[] = {KC_K, KC_L, TD_SCLN, COMBO_END};
 const uint16_t PROGMEM c_win_sx[] = {KC_A, KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM c_win_max[] = {KC_T, KC_Y, COMBO_END};
 const uint16_t PROGMEM c_clear[] = {KC_D, KC_L, COMBO_END};
-const uint16_t PROGMEM c_ctlclick[] = {KC_G, KC_H, COMBO_END};
+const uint16_t PROGMEM c_cmdclick[] = {KC_G, KC_H, COMBO_END};
 const uint16_t PROGMEM c_cw_togg[] = {KC_A, TD_SCLN, COMBO_END};
 const uint16_t PROGMEM c_diamond[] = {TD_COMM, TD_DOT, COMBO_END};
 
@@ -44,7 +44,7 @@ combo_t key_combos[] = {
   [C_WIN_SX] = COMBO_ACTION(c_win_sx),
   [C_GOSYM] = COMBO(c_gosym, GOSYM),
   [C_CLEAR] = COMBO_ACTION(c_clear),
-  [C_CTLCLICK] = COMBO_ACTION(c_ctlclick),
+  [C_CMDCLICK] = COMBO_ACTION(c_cmdclick),
   [C_CW_TOGG] = COMBO_ACTION(c_cw_togg),
   [C_DIAMOND] = COMBO_ACTION(c_diamond),
 };
@@ -53,42 +53,42 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
     case C_CTX:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LCTL)SS_TAP(X_SPC)SS_UP(X_LCTL));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_SPC)SS_UP(X_LCMD));
       }
       break;
     case C_TERM:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_TAP(X_T)SS_UP(X_LCTL)SS_UP(X_LALT));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_DOWN(X_LALT)SS_TAP(X_T)SS_UP(X_LCMD)SS_UP(X_LALT));
       }
       break;
     case C_SEL_ALL:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LCTL)SS_TAP(X_A)SS_UP(X_LCTL));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_A)SS_UP(X_LCMD));
       }
       break;
     case C_WIN_MAX:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LGUI)SS_TAP(X_UP)SS_UP(X_LGUI));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_M)SS_UP(X_LCMD));
       }
       break;
     case C_WIN_DX:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LGUI)SS_TAP(X_RIGHT)SS_UP(X_LGUI));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_R)SS_UP(X_LCMD));
       }
       break;
     case C_WIN_SX:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LGUI)SS_TAP(X_LEFT)SS_UP(X_LGUI));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_L)SS_UP(X_LCMD));
       }
       break;
     case C_CLEAR:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LCTL)SS_TAP(X_L)SS_UP(X_LCTL));
+		    SEND_STRING(SS_LCMD("k"));
       }
       break;
-    case C_CTLCLICK:
+    case C_CMDCLICK:
       if (pressed) {
-		    SEND_STRING(SS_DOWN(X_LCTL)SS_DELAY(500)SS_TAP(X_BTN1)SS_DELAY(500)SS_UP(X_LCTL));
+		    SEND_STRING(SS_DOWN(X_LCMD)SS_DELAY(500)SS_TAP(X_BTN1)SS_DELAY(500)SS_UP(X_LCMD));
       }
       break;
     case C_CW_TOGG:

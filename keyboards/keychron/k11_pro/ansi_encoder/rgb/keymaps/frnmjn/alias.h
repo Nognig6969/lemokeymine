@@ -3,6 +3,7 @@
 #define SFT		KC_LSFT
 #define ALT		KC_LALT
 #define CTL		KC_LCTL
+#define CMD		KC_LCMD
 #define GUI		KC_LGUI
 #define ENT		KC_ENT
 #define ESC		KC_ESC
@@ -17,12 +18,19 @@
 #define DOWN	KC_DOWN
 #define RIGHT	KC_RIGHT
 
-#define PUP		KC_PGUP
-#define PDN		KC_PGDN
 #define BT		BT_HST1
 
-#define DTUP 	DT_UP 
-#define DTDOWN 	DT_DOWN
+// Left-hand home row mods
+#define HR_A  	LGUI_T(KC_A)
+#define HR_S  	LALT_T(KC_S)
+#define HR_D  	LCTL_T(KC_D)
+#define HR_F  	LSFT_T(KC_F)
+
+// Right-hand home row mods
+#define HR_J  	RSFT_T(KC_J)
+#define HR_K  	RCTL_T(KC_K)
+#define HR_L  	LALT_T(KC_L)
+#define HR_SCLN RGUI_T(KC_SCLN)
 
 
 #define TD_F	TD(TD__F)
@@ -59,8 +67,8 @@
 #define UNDS    IT_UNDS
 #define AMPR    IT_AMPR
 #define HASH    IT_HASH
-#define TILD    ALGR(IT_IGRV)
-#define GRV     ALGR(IT_QUOT)
+#define TILD    IT_TILD
+#define GRV     IT_GRV
 #define PIPE	IT_PIPE
 #define DLR     IT_DLR
 #define EXLM    IT_EXLM
