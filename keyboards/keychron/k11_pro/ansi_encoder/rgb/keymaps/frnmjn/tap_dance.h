@@ -78,23 +78,14 @@ static td_tap_t td_c_state = {
 void c_finished(tap_dance_state_t *state, void *user_data) {
     td_c_state.state = cur_dance(state);
     switch (td_c_state.state) {
-        case TD_SINGLE_TAP: register_code(CMD); register_code(KC_C); break;
-        case TD_SINGLE_HOLD: register_code(CMD); register_code(KC_C); break;
-        case TD_DOUBLE_TAP: register_code(CMD); register_code(SFT); register_code(KC_C); break;
-        case TD_DOUBLE_SINGLE_TAP: register_code(CMD); register_code(SFT); register_code(KC_C); break;
+        case TD_SINGLE_TAP:
+        case TD_SINGLE_HOLD: 
+            SEND_STRING(SS_LCMD("c")); break;
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP: 
+            SEND_STRING(SS_DOWN(X_LCMD)SS_DOWN(X_LSFT)SS_TAP(X_C)SS_UP(X_LCMD)SS_UP(X_LSFT)); break;
         default: break;
     }
-}
-
-void c_reset(tap_dance_state_t *state, void *user_data) {
-    switch (td_c_state.state) {
-        case TD_SINGLE_TAP: unregister_code(CMD); unregister_code(KC_C); break;
-        case TD_SINGLE_HOLD: unregister_code(CMD); unregister_code(KC_C); break;
-        case TD_DOUBLE_TAP: unregister_code(CMD); unregister_code(SFT); unregister_code(KC_C); break;
-        case TD_DOUBLE_SINGLE_TAP: unregister_code(CMD); unregister_code(SFT); unregister_code(KC_C); break;
-        default: break;
-    }
-    td_c_state.state = TD_NONE;
 }
 
 static td_tap_t td_d_state = {
@@ -105,7 +96,7 @@ static td_tap_t td_d_state = {
 void d_finished(tap_dance_state_t *state, void *user_data) {
     td_d_state.state = cur_dance(state);
     switch (td_d_state.state) {
-        case TD_SINGLE_TAP: register_code(CMD); register_code(KC_D); break;
+        case TD_SINGLE_TAP: SEND_STRING(SS_LCMD("d")); break;
         case TD_SINGLE_HOLD: register_code(CMD); break;
         default: break;
     }
@@ -113,8 +104,7 @@ void d_finished(tap_dance_state_t *state, void *user_data) {
 
 void d_reset(tap_dance_state_t *state, void *user_data) {
     switch (td_d_state.state) {
-        case TD_SINGLE_TAP: unregister_code(CMD); unregister_code(KC_D); break;
-        case TD_SINGLE_HOLD: unregister_code(CMD);break;
+        case TD_SINGLE_HOLD: unregister_code(CMD); break;
         default: break;
     }
     td_d_state.state = TD_NONE;
@@ -128,7 +118,7 @@ static td_tap_t td_s_state = {
 void s_finished(tap_dance_state_t *state, void *user_data) {
     td_s_state.state = cur_dance(state);
     switch (td_s_state.state) {
-        case TD_SINGLE_TAP: register_code(CMD); register_code(KC_S); break;
+        case TD_SINGLE_TAP: SEND_STRING(SS_LCMD("s")); break;
         case TD_SINGLE_HOLD: register_code(ALT); break;
         default: break;
     }
@@ -136,7 +126,6 @@ void s_finished(tap_dance_state_t *state, void *user_data) {
 
 void s_reset(tap_dance_state_t *state, void *user_data) {
     switch (td_s_state.state) {
-        case TD_SINGLE_TAP: unregister_code(CMD); unregister_code(KC_S); break;
         case TD_SINGLE_HOLD: unregister_code(ALT);break;
         default: break;
     }
@@ -153,8 +142,9 @@ void rb_finished(tap_dance_state_t *state, void *user_data) {
     switch (td_rb_state.state) {
         case TD_SINGLE_TAP: SEND_STRING("("); break;
         case TD_SINGLE_HOLD: SEND_STRING(")"); break;
-        case TD_DOUBLE_TAP:  SEND_STRING("()" SS_TAP(X_LEFT)); break;
-        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("() SS_TAP(X_LEFT)"); break;
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+            SEND_STRING("()" SS_TAP(X_LEFT)); break;
         default: break;
     }
 }
@@ -169,8 +159,9 @@ void sb_finished(tap_dance_state_t *state, void *user_data) {
     switch (td_sb_state.state) {
         case TD_SINGLE_TAP: SEND_STRING("["); break;
         case TD_SINGLE_HOLD: SEND_STRING("]"); break;
-        case TD_DOUBLE_TAP:  SEND_STRING("[]" SS_TAP(X_LEFT)); break;
-        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("[]" SS_TAP(X_LEFT)); break;
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP: 
+            SEND_STRING("[]" SS_TAP(X_LEFT)); break;
         default: break;
     }
 }
@@ -185,8 +176,9 @@ void cb_finished(tap_dance_state_t *state, void *user_data) {
     switch (td_cb_state.state) {
         case TD_SINGLE_TAP: SEND_STRING("{"); break;
         case TD_SINGLE_HOLD: SEND_STRING("}"); break;
-        case TD_DOUBLE_TAP:  SEND_STRING("{}" SS_TAP(X_LEFT)); break;
-        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("{}" SS_TAP(X_LEFT)); break;
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP: 
+            SEND_STRING("{}" SS_TAP(X_LEFT)); break;
         default: break;
     }
 }
@@ -209,10 +201,10 @@ void e_finished(tap_dance_state_t *state, void *user_data) {
 
 void e_reset(tap_dance_state_t *state, void *user_data) {
     switch (td_e_state.state) {
-        case TD_SINGLE_TAP: unregister_code(KC_E); break;
-        case TD_SINGLE_HOLD: unregister_code(SFT); unregister_code(KC_E); break;
-        case TD_DOUBLE_TAP: unregister_code(IT_EGRV); break;
-        case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_E); unregister_code(KC_E); break;
+        case TD_SINGLE_TAP: SEND_STRING("e"); break;
+        case TD_SINGLE_HOLD: SEND_STRING("E"); break;
+        case TD_DOUBLE_TAP: SEND_STRING("è"); break;
+        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("ee"); break;
         default: break;
     }
     td_e_state.state = TD_NONE;
@@ -244,8 +236,9 @@ void slsh_finished(tap_dance_state_t *state, void *user_data) {
     switch (td_slsh_state.state) {
         case TD_SINGLE_TAP: SEND_STRING("/"); break;
         case TD_SINGLE_HOLD: SEND_STRING("?"); break;
-        case TD_DOUBLE_TAP: SEND_STRING("\\"); break;
-        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("\\"); break;
+        case TD_DOUBLE_TAP: SEND_STRING("//"); break;
+        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("//"); break;
+        case TD_DOUBLE_HOLD: SEND_STRING("\\"); break;
         default: break;
     }
 }
@@ -284,13 +277,13 @@ void dot_finished(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
   	[TD__F] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, f_finished, f_reset),
-    [TD__C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c_finished, c_reset),
+    [TD__C] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c_finished, NULL),
     [TD__D] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, d_finished, d_reset),
     [TD__S] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, s_finished, s_reset),
     [TD__RB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rb_finished, NULL),
     [TD__SB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sb_finished, NULL),
     [TD__CB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, cb_finished, NULL),
-    [TD__E] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, e_finished, e_reset),
+    [TD__E] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, e_finished, NULL),
     [TD__SCLN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, scln_finished, NULL),
     [TD__SLSH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, slsh_finished, NULL),
     [TD__COMM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, comm_finished, NULL),

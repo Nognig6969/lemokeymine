@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [NOR] = LAYOUT_69_ansi(
         NO,   NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,      NO,      NO,      NO,      NO,
         NO,   NO,     NO,     SW_TAB, FILE,   NO,             QUOT,   UNDS,   DQT,    AMPR,    PIPE,    NO,      NO,      NO,      NO,
-        NO,   HOME,   TD_S,   TD_D,   TD_F,   RUN,            LEFT,   DOWN,   UP,     RIGHT,   END,     NO,      NO,      NO,
+        NO,   HOME,   SAVE,   TD_D,   TD_F,   RUN,            LEFT,   DOWN,   UP,     RIGHT,   END,     NO,      NO,      NO,
         NO,   UNDO,   CUT,    TD_C,   PASTE,  REDO,   NO,     EXLM,   TD_RB,  TD_SB,  TD_CB,   PERC,    NO,      NO,
         NO,   NO,     NO,     NO,             NO,     NO,     DEL,    NO,     NO,     NO,      NO
 ),
