@@ -18,21 +18,21 @@ enum combos{
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM c_tab[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM c_enter[] = {KC_S, KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM c_esc[] = {KC_J, KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM c_ctx[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM c_term[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM c_sel_all[] = { KC_A, KC_S, KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM c_gosym[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM c_win_dx[] = {KC_K, KC_L, TD_SCLN, COMBO_END};
-const uint16_t PROGMEM c_win_sx[] = {KC_A, KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM c_tab[] = {HR_8, HR_9, COMBO_END};
+const uint16_t PROGMEM c_enter[] = {HR_2, HR_3, HR_4, COMBO_END};
+const uint16_t PROGMEM c_esc[] = {HR_7, HR_8, HR_9, COMBO_END};
+const uint16_t PROGMEM c_ctx[] = {HR_3, HR_4, COMBO_END};
+const uint16_t PROGMEM c_term[] = {HR_7, HR_8, COMBO_END};
+const uint16_t PROGMEM c_sel_all[] = { HR_1, HR_2, HR_3, HR_4, COMBO_END};
+const uint16_t PROGMEM c_gosym[] = {HR_2, HR_3, COMBO_END};
+const uint16_t PROGMEM c_win_dx[] = {HR_8, HR_9, TD_SCLN, COMBO_END};
+const uint16_t PROGMEM c_win_sx[] = {HR_1, HR_2, HR_3, COMBO_END};
 const uint16_t PROGMEM c_win_max[] = {KC_T, KC_Y, COMBO_END};
-const uint16_t PROGMEM c_clear[] = {KC_D, KC_L, COMBO_END};
-const uint16_t PROGMEM c_history[] = {KC_D, KC_H, COMBO_END};
-const uint16_t PROGMEM c_cw_togg[] = {KC_A, TD_SCLN, COMBO_END};
+const uint16_t PROGMEM c_clear[] = {HR_3, HR_9, COMBO_END};
+const uint16_t PROGMEM c_history[] = {HR_3, KC_H, COMBO_END};
+const uint16_t PROGMEM c_cw_togg[] = {HR_1, TD_SCLN, COMBO_END};
 const uint16_t PROGMEM c_diamond[] = {TD_COMM, TD_DOT, COMBO_END};
-const uint16_t PROGMEM c_homerow[] = {KC_F, KC_J, COMBO_END};
+const uint16_t PROGMEM c_homerow[] = {HR_4, HR_7, COMBO_END};
 
 combo_t key_combos[] = {
   [C_TAB] = COMBO(c_tab, TAB),

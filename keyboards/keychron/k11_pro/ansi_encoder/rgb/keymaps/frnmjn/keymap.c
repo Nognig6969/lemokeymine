@@ -12,8 +12,8 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [INS] = LAYOUT_69_ansi(
         NO,   NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,     NO,      NO,      NO,      NO,      NO,
-        NO,   KC_Q,   KC_W,   TD_E,   KC_R,   KC_T,           KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,    NO,      NO,      NO,     NO,
-        NO,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,           KC_H,   KC_J,   KC_K,   KC_L,    TD_SCLN, NO,      NO,      NO,
+        NO,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,           KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,    NO,      NO,      NO,     NO,
+        NO,   HR_1,   HR_2,   HR_3,   HR_4,   KC_G,           KC_H,   HR_7,   HR_8,   HR_9,    TD_SCLN, NO,      NO,      NO,
         NO,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   BT,     KC_N,   KC_M,   TD_COMM,TD_DOT,  TD_SLSH, NO,      NO,
         NO,   NO,     GONUM,  GONOR,          NO,     NO,     BSPC,   HYPR,   NO,     NO,      NO
 ),

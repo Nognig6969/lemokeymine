@@ -17,16 +17,16 @@
 #define BT		BT_HST1
 
 // Left-hand home row mods
-#define HR_1  	LCMD_T(KC_A)
+#define HR_1  	LSFT_T(KC_A)
 #define HR_2  	LCTL_T(KC_S)
 #define HR_3  	LALT_T(KC_D)
-#define HR_4  	LSFT_T(KC_F)
+#define HR_4  	LCMD_T(KC_F)
 
 // Right-hand home row mods
-#define HR_7  	RSFT_T(KC_J)
-#define HR_8  	RCTL_T(KC_K)
-#define HR_9  	LALT_T(KC_L)
-#define HR_10   RCMD_T(KC_SCLN)
+#define HR_7  	RCMD_T(KC_J)
+#define HR_8  	RALT_T(KC_K)
+#define HR_9  	LCTL_T(KC_L)
+#define HR_10   RSFT_T(KC_SCLN)
 
 
 #define TD_F	TD(TD__F)
