@@ -9,6 +9,11 @@ enum custom_keycodes {
     FILE,
     TERM,
     RUN,
+    HYPR,
+    EXIT,
+    HOME,
+    END,
+    QUIT,
 };
 
 bool is_ctl_tab_active = false;
@@ -55,7 +60,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
       case RUN:
-        SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_ENT)SS_UP(X_LCMD));
+        SEND_STRING(SS_DOWN(X_LCTL)SS_TAP(X_ENT)SS_UP(X_LCTL));
+        return false;
+        break;
+      case HYPR:
+        SEND_STRING(SS_DOWN(X_LCMD)SS_DOWN(X_LALT)SS_DOWN(X_LCTL)SS_DOWN(X_LSFT));
+        return false;
+        break;
+      case EXIT:
+        SEND_STRING(SS_TAP(X_ESC)":w");
+        return false;
+        break;
+      case HOME:
+        SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_LEFT)SS_UP(X_LCMD));
+        return false;
+        break;
+      case END:
+        SEND_STRING(SS_DOWN(X_LCMD)SS_TAP(X_RIGHT)SS_UP(X_LCMD));
+        return false;
+        break;
+      case QUIT:
+        SEND_STRING(SS_LCMD("q"));
         return false;
         break;
     }
@@ -63,6 +88,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
       case SW_TAB:
         unregister_code(KC_TAB);
+        return false;
+        break;
+      case HYPR:
+        SEND_STRING(SS_UP(X_LCMD)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
         return false;
         break;
     }

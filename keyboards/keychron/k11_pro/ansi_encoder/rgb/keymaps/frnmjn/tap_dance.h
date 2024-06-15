@@ -44,6 +44,9 @@ enum {
     TD__SLSH,
     TD__COMM,
     TD__DOT,
+    TD__QT,
+    TD__DQT,
+    TD__PIPE,
 };
 
 static td_tap_t td_f_state = {
@@ -84,6 +87,8 @@ void c_finished(tap_dance_state_t *state, void *user_data) {
         case TD_DOUBLE_TAP:
         case TD_DOUBLE_SINGLE_TAP: 
             SEND_STRING(SS_DOWN(X_LCMD)SS_DOWN(X_LSFT)SS_TAP(X_C)SS_UP(X_LCMD)SS_UP(X_LSFT)); break;
+        case TD_DOUBLE_HOLD:
+            SEND_STRING(SS_LCTL("c")); break;
         default: break;
     }
 }
@@ -96,7 +101,10 @@ static td_tap_t td_d_state = {
 void d_finished(tap_dance_state_t *state, void *user_data) {
     td_d_state.state = cur_dance(state);
     switch (td_d_state.state) {
-        case TD_SINGLE_TAP: SEND_STRING(SS_LCMD("d")); break;
+        case TD_SINGLE_TAP:
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP: 
+            SEND_STRING(SS_LCMD("d")); break;
         case TD_SINGLE_HOLD: register_code(CMD); break;
         default: break;
     }
@@ -144,6 +152,7 @@ void rb_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_HOLD: SEND_STRING(")"); break;
         case TD_DOUBLE_TAP:
         case TD_DOUBLE_SINGLE_TAP:
+        case TD_DOUBLE_HOLD:
             SEND_STRING("()" SS_TAP(X_LEFT)); break;
         default: break;
     }
@@ -160,7 +169,8 @@ void sb_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP: SEND_STRING("["); break;
         case TD_SINGLE_HOLD: SEND_STRING("]"); break;
         case TD_DOUBLE_TAP:
-        case TD_DOUBLE_SINGLE_TAP: 
+        case TD_DOUBLE_SINGLE_TAP:
+        case TD_DOUBLE_HOLD:
             SEND_STRING("[]" SS_TAP(X_LEFT)); break;
         default: break;
     }
@@ -177,7 +187,8 @@ void cb_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_TAP: SEND_STRING("{"); break;
         case TD_SINGLE_HOLD: SEND_STRING("}"); break;
         case TD_DOUBLE_TAP:
-        case TD_DOUBLE_SINGLE_TAP: 
+        case TD_DOUBLE_SINGLE_TAP:
+        case TD_DOUBLE_HOLD:
             SEND_STRING("{}" SS_TAP(X_LEFT)); break;
         default: break;
     }
@@ -191,23 +202,15 @@ static td_tap_t td_e_state = {
 void e_finished(tap_dance_state_t *state, void *user_data) {
     td_e_state.state = cur_dance(state);
     switch (td_e_state.state) {
-        case TD_SINGLE_TAP: register_code(KC_E); break;
-        case TD_SINGLE_HOLD: register_code(SFT); register_code(KC_E); break;
-        case TD_DOUBLE_TAP: register_code(IT_EGRV); break;
-        case TD_DOUBLE_SINGLE_TAP: register_code(KC_E); register_code(KC_E); break;
-        default: break;
-    }
-}
-
-void e_reset(tap_dance_state_t *state, void *user_data) {
-    switch (td_e_state.state) {
         case TD_SINGLE_TAP: SEND_STRING("e"); break;
         case TD_SINGLE_HOLD: SEND_STRING("E"); break;
-        case TD_DOUBLE_TAP: SEND_STRING("è"); break;
-        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("ee"); break;
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+            SEND_STRING("ee"); break;
+        case TD_DOUBLE_HOLD:
+            SEND_STRING(SS_TAP(X_LBRC)); break;
         default: break;
     }
-    td_e_state.state = TD_NONE;
 }
 
 static td_tap_t td_scln_state = {
@@ -271,6 +274,64 @@ void dot_finished(tap_dance_state_t *state, void *user_data) {
         case TD_SINGLE_HOLD: SEND_STRING(">"); break;
         case TD_DOUBLE_TAP: SEND_STRING(".."); break;
         case TD_DOUBLE_SINGLE_TAP: SEND_STRING(".."); break;
+        case TD_TRIPLE_TAP:
+        case TD_TRIPLE_HOLD:
+            SEND_STRING("..."); break;
+        default: break;
+    }
+}
+
+static td_tap_t td_quot_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void quot_finished(tap_dance_state_t *state, void *user_data) {
+    td_quot_state.state = cur_dance(state);
+    switch (td_quot_state.state) {
+        case TD_SINGLE_TAP: SEND_STRING("'"); break;
+        case TD_SINGLE_HOLD:
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+            SEND_STRING("''" SS_TAP(X_LEFT)); break;
+        case TD_DOUBLE_HOLD:
+            SEND_STRING("`"); break;
+        default: break;
+    }
+}
+
+static td_tap_t td_dquot_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void dquot_finished(tap_dance_state_t *state, void *user_data) {
+    td_dquot_state.state = cur_dance(state);
+    switch (td_dquot_state.state) {
+        case TD_SINGLE_TAP: SEND_STRING("\""); break;
+        case TD_SINGLE_HOLD: 
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+        case TD_DOUBLE_HOLD:
+            SEND_STRING("\"\"" SS_TAP(X_LEFT)); break;
+        default: break;
+    }
+}
+
+static td_tap_t td_pipe_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void pipe_finished(tap_dance_state_t *state, void *user_data) {
+    td_pipe_state.state = cur_dance(state);
+    switch (td_pipe_state.state) {
+        case TD_SINGLE_TAP: SEND_STRING("| "); break;
+        case TD_SINGLE_HOLD: 
+        case TD_DOUBLE_TAP:
+        case TD_DOUBLE_SINGLE_TAP:
+        case TD_DOUBLE_HOLD:
+            SEND_STRING("|> "); break;
         default: break;
     }
 }
@@ -288,4 +349,7 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD__SLSH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, slsh_finished, NULL),
     [TD__COMM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, comm_finished, NULL),
     [TD__DOT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dot_finished, NULL),
+    [TD__QT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quot_finished, NULL),
+    [TD__DQT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dquot_finished, NULL),
+    [TD__PIPE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, pipe_finished, NULL),
 }; 

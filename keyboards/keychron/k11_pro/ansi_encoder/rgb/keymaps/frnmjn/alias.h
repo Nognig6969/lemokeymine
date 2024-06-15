@@ -1,14 +1,11 @@
 #define NO		KC_NO
 #define TRNS	KC_TRNS
 #define SFT		KC_LSFT
-#define ALT		KC_LALT
 #define CTL		KC_LCTL
+#define ALT		KC_LALT
 #define CMD		KC_LCMD
-#define GUI		KC_LGUI
 #define ENT		KC_ENT
 #define ESC		KC_ESC
-#define HOME	KC_HOME
-#define END		KC_END
 #define SPC		KC_SPC
 #define BSPC	KC_BSPC
 #define DEL		KC_DEL
@@ -17,20 +14,19 @@
 #define UP		KC_UP
 #define DOWN	KC_DOWN
 #define RIGHT	KC_RIGHT
-
 #define BT		BT_HST1
 
 // Left-hand home row mods
-#define HR_A  	LGUI_T(KC_A)
-#define HR_S  	LALT_T(KC_S)
-#define HR_D  	LCTL_T(KC_D)
-#define HR_F  	LSFT_T(KC_F)
+#define HR_1  	LCMD_T(KC_A)
+#define HR_2  	LCTL_T(KC_S)
+#define HR_3  	LALT_T(KC_D)
+#define HR_4  	LSFT_T(KC_F)
 
 // Right-hand home row mods
-#define HR_J  	RSFT_T(KC_J)
-#define HR_K  	RCTL_T(KC_K)
-#define HR_L  	LALT_T(KC_L)
-#define HR_SCLN RGUI_T(KC_SCLN)
+#define HR_7  	RSFT_T(KC_J)
+#define HR_8  	RCTL_T(KC_K)
+#define HR_9  	LALT_T(KC_L)
+#define HR_10   RCMD_T(KC_SCLN)
 
 
 #define TD_F	TD(TD__F)
@@ -45,12 +41,13 @@
 #define TD_SLSH	TD(TD__SLSH)
 #define TD_COMM	TD(TD__COMM)
 #define TD_DOT	TD(TD__DOT)
+#define TD_QT	TD(TD__QT)
+#define TD_DQT	TD(TD__DQT)
+#define TD_PIPE	TD(TD__PIPE)
 
 #define GONOR	LT(NOR, SPC)
 #define GOSYM	MO(SYM)
 #define GONUM	MO(NUM)
-
-#define LEAD 	QK_LEAD
 
 #define COMM 	IT_COMM 
 #define DOT 	IT_DOT 
