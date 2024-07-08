@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2024 Chris Laprade (chris@rootiest.com)
- *
+*
  * This file is part of rootiest.
  *
  * rootiest is free software: you can redistribute it and/or modify
@@ -18,7 +18,6 @@
  */
 #include "quantum.h"
 #include "os_detection.h" // OS detection
-#include "vscode_macros.h" // VSCode macros
 
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {

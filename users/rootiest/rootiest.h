@@ -105,8 +105,10 @@ enum custom_keycodes {
     SECTION,                      // Types section symbol: §
     PARAGRAPH,                    // Types paragraph symbol: ¶
     EURO,                         // Types euro symbol: €
+    ESC_CLOSE,                    // Closes the current window/tab
     VSC_CMD = VSCODE_COMMAND_KEY, // VSCode command key
-    ALT4KEY                       // Applies Alt modifier for next 4 keypresses
+    ALT4KEY,                      // Applies Alt modifier for next 4 keypresses
+    TOG_VIM,                      // Toggles VIM mode
 };
 #endif
 

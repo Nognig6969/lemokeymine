@@ -17,6 +17,7 @@
  * along with rootiest.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "rgb_matrix.h"
 #include QMK_KEYBOARD_H // QMK Keyboard library
 #include "keychron_common.h" // Keychron common definitions
 #include "features/select_word.h" // Select word feature
@@ -24,7 +25,8 @@
 #include "features/layer_lock.h" // Layer lock feature
 #include "features/achordion.h" // Achordion feature
 #include "features/sentence_case.h" // Sentence case feature
-#include "rootiest.h" // Rootiest customizations
+#include "rootiest.h"               // Rootiest customizations
+#include "qmk-vim/src/vim.h"       // Vim mode
 
     /* ============================================================================================================ */
     /* ============================================================================================================ */
@@ -42,16 +44,16 @@
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAIN_BASE] = LAYOUT_ansi_101(
-        KC_ESC,             KC_BRID,  KC_BRIU,  KC_MCTRL, KC_MYCM, KC_F5,  KC_F6,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_F10,    KC_F11,  KC_F12,            KC_DEL,   KC_PSCR,   KC_WWW_SEARCH ,  QK_LEAD,     KC_MUTE,
-        KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    KC_EQL,   KC_BSPC,            TD(TD_PG_HOME),  TD(TD_NUM_CLEAR),   KC_PSLS,  KC_PAST,    KC_PMNS,
-        KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,    KC_RBRC,  KC_BSLS,            TD(TD_PG_END),    KC_P7,    KC_P8,    KC_P9,
+        KC_ESC,             KC_F1,  KC_F2,  KC_F3, KC_F4, KC_F5,  KC_F6,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_F10,    KC_F11,  KC_F12,            KC_DEL,   KC_PSCR,   KC_WWW_SEARCH ,  QK_LEAD,     KC_MUTE,
+        KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    KC_EQL,   KC_BSPC,            KC_PGUP,  TD(TD_NUM_CLEAR),   KC_PSLS,  KC_PAST,    KC_PMNS,
+        KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,    KC_RBRC,  KC_BSLS,            KC_PGDN,    KC_P7,    KC_P8,    KC_P9,
         TD(TD_ESC_CAPS),  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_ENT,     TD(TD_HOME_END),  KC_P4,    KC_P5,    KC_P6,     KC_PPLS,
         KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,  KC_UP,                      KC_P1,    KC_P2,    KC_P3,
         SC_LCPO,  KC_LGUI, KC_LALT,                    KC_SPC,                 KC_RALT, MO(MAIN_FN), SC_RCPC,  KC_LEFT,  KC_DOWN,  KC_RGHT,                                   LT(SPECIAL_FN, KC_P0),  LT(PREFIX_C_K, KC_PDOT),   KC_PENT),
     [MAIN_FN] = LAYOUT_ansi_101(
-        _______,            KC_F1,    KC_F2,    KC_F3,    KC_F4,    RGB_VAD,    RGB_VAI,    KC_F7,    KC_F8,    KC_F9,    KC_MUTE,     KC_VOLD,   KC_VOLU,      A(KC_F4), _______, _______, ALT4KEY,    A(KC_F4),
+        ESC_CLOSE,          KC_BRID,    KC_BRIU,    KC_MCTRL,    KC_MYCM,    RGB_VAD,    RGB_VAI,    KC_F7,    KC_F8,    KC_F9,    KC_MUTE,     KC_VOLD,   KC_VOLU,      A(KC_F4), _______, _______, ALT4KEY,    A(KC_F4),
         HEATMAP,  BT_HST1,  BT_HST2,  BT_HST3,  P2P4G,    _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  _______,            _______,  KC_CALC,  _______,  _______,    _______,
-        RGB_MOD,  RGB_TOG,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  _______,  _______,  _______,  _______,    _______,  _______,            _______,  _______, SS_PERSONAL, SS_ADDRESS,
+        RGB_MOD,  RGB_TOG,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  _______,  _______,  TOG_VIM,  _______,  _______,  _______,    _______,  _______,            _______,  _______, SS_PERSONAL, SS_ADDRESS,
         _______,  C(KC_A), C(KC_S),  RGB_HUD,  RGB_SAD,  RGB_SPD,  _______,  _______,  _______,  _______,  _______,  _______,              _______,             _______,  SS_NICK,  SS_WEB,   SS_GITHUB,    _______,
         _______,            C(KC_Z),  C(KC_X),  C(KC_C),  C(KC_V),  BAT_LVL,  NK_TOGG,  TO(MUSIK),  _______,  AC_TOGG,  _______,              _______,  _______,            SS_NAME,  SS_EMAIL,  SS_PHONE,
         _______,  _______,  _______,                                _______,                                _______,  _______,    _______,  TD(TD_OPEN),  _______,  TD(TD_CLOSE),            _______,  _______,    _______),
@@ -114,7 +116,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool mouse_jiggler_enabled = false;
 static uint16_t mouse_jiggler_timer;
 
-bool has_mouse_report_changed(report_mouse_t* new_report, report_mouse_t* old_report) {
+bool has_mouse_report_changed(
+    report_mouse_t* new_report,
+    report_mouse_t* old_report
+) {
     // Only report every 5 seconds.
     if (mouse_jiggler_enabled && timer_elapsed(mouse_jiggler_timer) > 5000) {
         mouse_jiggler_timer = timer_read();
@@ -314,7 +319,7 @@ static uint32_t idle_callback(uint32_t trigger_time, void* cb_arg) {
 }
 
 /* ##################################################################### */
-/* ########################## Encoder mappping ######################### */
+/* ########################## Encoder mapping ########################## */
 /* ##################################################################### */
 // The encoder map defines the behavior of the encoders. It maps the
 // encoders to the keycodes that are sent when the encoder is turned.
@@ -354,6 +359,11 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
     if (!process_layer_lock(keycode, record, LLOCK)) { return false; } // Layer lock
     if (!process_achordion(keycode, record)) { return false; } // Achordion
     if (!process_sentence_case(keycode, record)) { return false; } // Sentence case
+
+    // process vim mode
+    if (!process_vim_mode(keycode, record)) {
+        return false;
+    }
 
     // Alt4Key overrides
     if (!record->event.pressed) {  // On key up event.
@@ -703,6 +713,14 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
                 send_unicode_string("€");
             }
             return false;
+        case ESC_CLOSE:  // Close the current window/tab
+            if (record->event.pressed) {
+                SEND_STRING(
+                    SS_LCTL(
+                        SS_LSFT(
+                            SS_TAP(X_Q))));
+            }
+            return false;
 /*  Backspace or delete based on shift key state override. */
 #ifdef USE_BSPC_DEL_OVERRIDE
         case KC_BSPC: { // Backspace or Delete based on shift key state.
@@ -736,6 +754,13 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
 #endif
+        case TOG_VIM:
+            if (record->event.pressed) {
+                toggle_vim_mode();
+            }
+            return false;
+        default:
+            return true;
     }
 
     // Call the common keychron process record function
@@ -743,6 +768,40 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
     return true;
+}
+/* ##################################################################### */
+/* ####################### RGB MATRIX INDICATORS ####################### */
+/* ##################################################################### */
+// This function is called to set the RGB matrix indicators.
+static uint current_vim = 0;
+bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
+    // Set Vim mode indicator LEDs
+    if (vim_mode_enabled()) {
+        if ( current_vim <= 0 ) {
+            RGB_MATRIX_INDICATOR_SET_COLOR(ESC_KEY_INDEX, 255, 255, 255);
+        } else if ( current_vim == 1 ) {
+            RGB_MATRIX_INDICATOR_SET_COLOR(ESC_KEY_INDEX, 75, 255, 75);
+        } else if ( current_vim == 2 ) {
+            RGB_MATRIX_INDICATOR_SET_COLOR(ESC_KEY_INDEX, 255, 75, 255);
+        } else if ( current_vim >= 3 ) {
+            RGB_MATRIX_INDICATOR_SET_COLOR(ESC_KEY_INDEX, 255, 75, 255);
+        }
+    }
+    return true;
+}
+
+// Set the Vim mode flag
+void insert_mode_user(void) {
+    current_vim = 1;
+}
+void normal_mode_user(void) {
+    current_vim = 0;
+}
+void visual_mode_user(void) {
+    current_vim = 2;
+}
+void visual_line_mode_user(void) {
+    current_vim = 3;
 }
 
 /* ##################################################################### */

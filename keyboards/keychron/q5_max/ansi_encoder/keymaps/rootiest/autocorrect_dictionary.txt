@@ -89,4 +89,10 @@ didnt         -> didn't
 doesnt        -> doesn't
 oposite       -> opposite
 oportunity    -> opportunity
+retreive      -> retrieve
+vegitarien    -> vegetarian
+vegatarian    -> vegetarian
+vegeterian    -> vegetarian
+vegatarien    -> vegetarian
+vegeterien    -> vegetarian
 
