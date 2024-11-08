@@ -30,7 +30,7 @@
 
 #define CURVE_POINTS_COUNT  4
 
-#define KC_ANALOG_MATRIX_VERSION 0x34340004
+#define KC_ANALOG_MATRIX_VERSION 0x34340005
 #define SIZE_OF_CALIB_VALUE_T 3             // Size of calibrated_value_t
 #define SIZE_OF_ANALOG_KEY_CONFIG_T 4       // Size of analog_key_config_t
 #define SIZE_OF_OKMC_CONFIG_T 19            // Size of okmc_config_t
